@@ -1,0 +1,6 @@
+--color
+--tty
+--format progress
+--order random
+--backtrace
+--require spec_helper
