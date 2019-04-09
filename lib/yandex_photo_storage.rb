@@ -1,6 +1,13 @@
-require "yandex_photo_storage/version"
+require 'yandex_photo_storage/version'
 
 module YandexPhotoStorage
-  class Error < StandardError; end
-  # Your code goes here...
+  Config = Struct.new(:api_key, :api_secret)
+
+  def self.config
+    @config ||= Config.new
+  end
+
+  def self.configure
+    yield config
+  end
 end
