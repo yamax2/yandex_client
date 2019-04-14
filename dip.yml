@@ -2,7 +2,7 @@ version: '1'
 
 environment:
   DOCKER_RUBY_VERSION: 2.6
-  RUBY_IMAGE_TAG: 2.6.2
+  RUBY_IMAGE_TAG: 2.6.3
   POSTGRES_IMAGE_TAG: 11.2
   COMPOSE_FILE_EXT: development
   RAILS_ENV: test
