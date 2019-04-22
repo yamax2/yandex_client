@@ -15,7 +15,7 @@ module YandexPhotoStorage
 
         response = make_request
         result = JSON.parse(response.body).deep_symbolize_keys
-        process_errors(response)
+        process_errors(response) unless response.is_a?(Net::HTTPOK)
 
         result
       else
@@ -40,6 +40,17 @@ module YandexPhotoStorage
       end
     end
 
+    def log_api_request(request, response)
+      return unless (logger = YandexPhotoStorage.config.logger).present?
+
+      logger.info "#{request.method} #{@request_uri} #{response.code} #{response.message}"
+      logger.info "request headers: #{request.to_hash.to_json}"
+      logger.info "request body: #{request.body}" if request.body
+
+      logger.info "response headers: #{response.to_hash.to_json}"
+      logger.info "response body: #{response.body}" if response.body
+    end
+
     def make_request
       request = "Net::HTTP::#{method.to_s.camelize}".constantize.new(
         request_uri.request_uri,
@@ -47,13 +58,14 @@ module YandexPhotoStorage
       )
 
       request.body = request_body
+      response = http.start { |http| http.request(request) }
 
-      http.start { |http| http.request(request) }
+      log_api_request(request, response)
+
+      response
     end
 
     def process_errors(response)
-      return if response.is_a?(Net::HTTPOK)
-
       raise ApiRequestError.new(
         error: result.fetch(:error),
         error_description: result.fetch(:error_description),
