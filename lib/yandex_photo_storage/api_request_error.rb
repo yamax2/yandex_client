@@ -7,7 +7,7 @@ module YandexPhotoStorage
       @error_description = error_description
       @code = code
 
-      super "#{error}: #{error_description} (http code #{@code})"
+      super [error, error_description, "http code #{@code}"].compact.join(', ')
     end
   end
 end

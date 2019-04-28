@@ -13,9 +13,11 @@ module YandexPhotoStorage
       if self.class::ACTIONS.key?(method_name)
         @action = method_name
 
+        result = nil
         response = make_request
-        result = JSON.parse(response.body).deep_symbolize_keys
-        process_errors(response) unless response.is_a?(Net::HTTPOK)
+
+        result = JSON.parse(response.body).deep_symbolize_keys if response.body.present?
+        process_errors(response, result) unless response.is_a?(Net::HTTPOK)
 
         result
       else
@@ -65,10 +67,10 @@ module YandexPhotoStorage
       response
     end
 
-    def process_errors(response)
+    def process_errors(response, result)
       raise ApiRequestError.new(
-        error: result.fetch(:error),
-        error_description: result.fetch(:error_description),
+        error: result&.fetch(:error),
+        error_description: result&.fetch(:error_description),
         code: response.code
       )
     end

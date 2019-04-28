@@ -11,7 +11,7 @@ compose:
   files:
     - docker/docker-compose.yml
     - docker/docker-compose.${COMPOSE_FILE_EXT}.yml
-  project_name: yandex_photo_storage${RAILS_ENV}
+  project_name: yandex_photo_storage
 
 interaction:
   sh:

@@ -6,7 +6,9 @@ module YandexPhotoStorage
     # https://oauth.yandex.ru/authorize?response_type=code&client_id=99bcbd17ad7f411694710592d978a4a2&force_confirm=false
     #
     # Example:
-    #   YandexPhotoStorage::Auth::Client.new(refresh_token: Token.last.refresh_token).refresh_token
+    #   token = Token.first
+    #   YandexPhotoStorage::Auth::Client.new(refresh_token: token.refresh_token).refresh_token
+    #
     #   YandexPhotoStorage::Auth::Client.new(code: '9388894').create_token
     class Client < ::YandexPhotoStorage::Client
       AUTH_ACTION_URL = 'https://oauth.yandex.ru/token'.freeze

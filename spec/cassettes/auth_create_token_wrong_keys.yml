@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.yandex.ru/token
+    body:
+      encoding: UTF-8
+      string: client_id=wrong&client_secret=wrong&code=100500&grant_type=authorization_code
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: BAD REQUEST
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 28 Apr 2019 16:08:27 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Language, Content-Type, X-Requested-With
+    body:
+      encoding: UTF-8
+      string: '{"error_description": "Client not found", "error": "invalid_client"}'
+    http_version: 
+  recorded_at: Sun, 28 Apr 2019 16:08:27 GMT
+recorded_with: VCR 4.0.0

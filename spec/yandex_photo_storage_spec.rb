@@ -16,6 +16,10 @@ RSpec.describe YandexPhotoStorage do
   describe '.config' do
     it do
       expect(described_class.config).to be_a(described_class::Config)
+
+      %i[api_key api_secret logger token_model_klass].each do |key|
+        expect(described_class.config).to respond_to(key)
+      end
     end
   end
 end
