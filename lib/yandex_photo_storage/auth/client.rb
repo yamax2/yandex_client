@@ -18,9 +18,8 @@ module YandexPhotoStorage
         refresh_token: 'refresh_token'
       }.with_indifferent_access.freeze
 
-      def initialize(params = {})
+      def initialize
         super method: :post
-        @params = params
       end
 
       private
@@ -29,12 +28,12 @@ module YandexPhotoStorage
         URI.parse(AUTH_ACTION_URL)
       end
 
-      def request_body
+      def request_body(params)
         {
           grant_type: ACTIONS.fetch(@action),
           client_id: ::YandexPhotoStorage.config.api_key,
           client_secret: ::YandexPhotoStorage.config.api_secret
-        }.merge!(@params).to_query
+        }.merge!(params).to_query
       end
 
       def request_headers

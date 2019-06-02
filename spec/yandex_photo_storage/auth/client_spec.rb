@@ -2,8 +2,7 @@ require 'spec_helper'
 
 RSpec.describe YandexPhotoStorage::Auth::Client do
   let(:logger) { instance_double(Logger) }
-  let(:service) { described_class.new(params) }
-  let(:params) { {} }
+  let(:service) { described_class.new }
 
   before do
     allow(YandexPhotoStorage.config).to receive(:api_key).and_return(API_APPLICATION_KEY)
@@ -16,9 +15,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
   describe '#create_token' do
     # https://oauth.yandex.ru/authorize?response_type=code&client_id=99bcbd17ad7f411694710592d978a4a2&force_confirm=false
     context 'when correct code' do
-      let(:params) { {code: '1445655'} }
-
-      subject { VCR.use_cassette('auth_create_token_success') { service.create_token } }
+      subject { VCR.use_cassette('auth_create_token_success') { service.create_token(code: '1445655') } }
 
       it do
         is_expected.to include(:token_type, :access_token, :expires_in, :refresh_token)
@@ -28,9 +25,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
     end
 
     context 'when incorrect code' do
-      let(:params) { {code: 100_500} }
-
-      subject { VCR.use_cassette('auth_create_token_wrong_code') { service.create_token } }
+      subject { VCR.use_cassette('auth_create_token_wrong_code') { service.create_token(code: 100_500) } }
 
       it do
         expect { subject }.
@@ -41,14 +36,12 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
     end
 
     context 'when incorrect api app keys' do
-      let(:params) { {code: 100_500} }
-
       before do
         allow(YandexPhotoStorage.config). to receive(:api_key).and_return('wrong')
         allow(YandexPhotoStorage.config). to receive(:api_secret).and_return('wrong')
       end
 
-      subject { VCR.use_cassette('auth_create_token_wrong_keys') { service.create_token } }
+      subject { VCR.use_cassette('auth_create_token_wrong_keys') { service.create_token(code: 100_500) } }
 
       it do
         expect { subject }.
@@ -70,9 +63,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
     end
 
     context 'and expired code' do
-      let(:params) { {code: '9857623'} }
-
-      subject { VCR.use_cassette('auth_create_expired_code') { service.create_token } }
+      subject { VCR.use_cassette('auth_create_expired_code') { service.create_token(code: '9857623') } }
 
       it do
         expect { subject }.
@@ -93,9 +84,9 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
   describe '#refresh_token' do
     context 'when correct refresh_token' do
-      let(:params) { {refresh_token: API_REFRESH_TOKEN} }
-
-      subject { VCR.use_cassette('auth_refresh_token_success') { service.refresh_token } }
+      subject do
+        VCR.use_cassette('auth_refresh_token_success') { service.refresh_token(refresh_token: API_REFRESH_TOKEN) }
+      end
 
       it do
         is_expected.to include(:access_token, :expires_in, :refresh_token, :token_type)
@@ -105,9 +96,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
     end
 
     context 'when incorrect refresh_token' do
-      let(:params) { {refresh_token: 'wrong'} }
-
-      subject { VCR.use_cassette('auth_refresh_token_wrong_token') { service.refresh_token } }
+      subject { VCR.use_cassette('auth_refresh_token_wrong_token') { service.refresh_token(refresh_token: 'wrong') } }
 
       it do
         expect { subject }.
@@ -118,14 +107,14 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
     end
 
     context 'when incorrect api app keys' do
-      let(:params) { {refresh_token: API_REFRESH_TOKEN} }
-
       before do
         allow(YandexPhotoStorage.config). to receive(:api_key).and_return('wrong')
         allow(YandexPhotoStorage.config). to receive(:api_secret).and_return('wrong')
       end
 
-      subject { VCR.use_cassette('auth_refresh_token_wrong_keys') { service.refresh_token } }
+      subject do
+        VCR.use_cassette('auth_refresh_token_wrong_keys') { service.refresh_token(refresh_token: API_REFRESH_TOKEN) }
+      end
 
       it do
         expect { subject }.

@@ -14,7 +14,7 @@ module YandexPhotoStorage
         @action = method_name
 
         result = nil
-        response = make_request
+        response = make_request(args.last.is_a?(Hash) ? args.last : {})
 
         result = JSON.parse(response.body).deep_symbolize_keys if response.body.present?
         process_errors(response, result) unless response.is_a?(Net::HTTPOK)
@@ -53,13 +53,13 @@ module YandexPhotoStorage
       logger.info "response body: #{response.body}" if response.body
     end
 
-    def make_request
+    def make_request(params)
       request = "Net::HTTP::#{method.to_s.camelize}".constantize.new(
         request_uri.request_uri,
         request_headers
       )
 
-      request.body = request_body
+      request.body = request_body(params)
       response = http.start { |http| http.request(request) }
 
       log_api_request(request, response)
@@ -75,7 +75,7 @@ module YandexPhotoStorage
       )
     end
 
-    def request_body
+    def request_body(_params)
 
     end
 
