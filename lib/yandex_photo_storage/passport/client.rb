@@ -1,8 +1,10 @@
 module YandexPhotoStorage
   module Passport
     # https://tech.yandex.ru/passport/doc/dg/reference/request-docpage/
+    #
     # Example:
-    #   YandexPhotoStorage::Passport::Client.new(access_token: Token.first.access_token).info
+    #   client = YandexPhotoStorage::Passport::Client.new(access_token: Token.first.access_token)
+    #   client.info
     class Client < ::YandexPhotoStorage::Client
       ACTION_URL = 'https://login.yandex.ru'.freeze
       ACTIONS = {info: nil}.with_indifferent_access.freeze
