@@ -23,7 +23,7 @@ RSpec.describe YandexPhotoStorage::Passport::Client do
           :id
         )
 
-        expect(logger).to have_received(:info).exactly(4).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe YandexPhotoStorage::Passport::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'http code 401')
 
-        expect(logger).to have_received(:info).exactly(4).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 

@@ -20,7 +20,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
       it do
         is_expected.to include(:token_type, :access_token, :expires_in, :refresh_token)
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'bad_verification_code, Invalid code, http code 400')
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_client, Client not found, http code 400')
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -58,7 +58,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_request, code not in POST, http code 400')
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_grant, Code has expired, http code 400')
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
       it do
         is_expected.to include(:access_token, :expires_in, :refresh_token, :token_type)
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_grant, expired_token, http code 400')
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
         expect { subject }.
           to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_client, Client not found, http code 400')
 
-        expect(logger).to have_received(:info).exactly(5).times
+        expect(logger).to have_received(:info).exactly(3).times
       end
     end
 

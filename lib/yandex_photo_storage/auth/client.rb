@@ -36,13 +36,13 @@ module YandexPhotoStorage
         }.merge!(params).to_query
       end
 
-      def request_headers
+      def request_headers(_action, _params)
         {
           'Content-type' => 'application/x-www-form-urlencoded'
         }
       end
 
-      def request_uri(_action)
+      def request_uri(_action, _params)
         @request_uri ||= URI.parse(AUTH_ACTION_URL)
       end
     end
