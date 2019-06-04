@@ -3,26 +3,16 @@ module YandexPhotoStorage
   class Client
     TIMEOUT = 10
 
-    attr_reader :method
-
-    def initialize(method: :get)
-      @method = method
-    end
-
     def method_missing(method_name, *args, &_)
-      if self.class::ACTIONS.include?(method_name)
-        @action = method_name
+      return super unless self.class::ACTIONS.include?(method_name)
 
-        result = nil
-        response = make_request(args.last.is_a?(Hash) ? args.last : {})
+      result = nil
+      response = make_request(method_name, args.last.is_a?(Hash) ? args.last : {})
 
-        result = Oj.load(response.body, symbol_keys: true).deep_symbolize_keys if response.body.present?
-        process_errors(response, result) unless response.is_a?(Net::HTTPOK)
+      result = Oj.load(response.body, symbol_keys: true).deep_symbolize_keys if response.body.present?
+      process_errors(response, result) unless response.is_a?(Net::HTTPOK)
 
-        result
-      else
-        super
-      end
+      result
     end
 
     def respond_to_missing?(method_name, include_private = false)
@@ -31,15 +21,15 @@ module YandexPhotoStorage
 
     private
 
-    def build_request_uri
-      raise 'not implemented'
-    end
-
-    def http
-      @http ||= Net::HTTP.new(request_uri.host, request_uri.port).tap do |http|
+    def http(request_uri)
+      Net::HTTP.new(request_uri.host, request_uri.port).tap do |http|
         http.use_ssl = true
         http.read_timeout = TIMEOUT
       end
+    end
+
+    def http_method_for_action(_action)
+      :get
     end
 
     def log_api_request(request, response)
@@ -53,14 +43,16 @@ module YandexPhotoStorage
       logger.info "response body: #{response.body}" if response.body
     end
 
-    def make_request(params)
-      request = "Net::HTTP::#{method.to_s.camelize}".constantize.new(
+    def make_request(action, params)
+      request_uri = request_uri(action)
+
+      request = "Net::HTTP::#{http_method_for_action(action).to_s.camelize}".constantize.new(
         request_uri.request_uri,
         request_headers
       )
 
-      request.body = request_body(params)
-      response = http.start { |http| http.request(request) }
+      request.body = request_body(action, params)
+      response = http(request_uri).start { |http| http.request(request) }
 
       log_api_request(request, response)
 
@@ -75,7 +67,7 @@ module YandexPhotoStorage
       )
     end
 
-    def request_body(_params)
+    def request_body(action, _params)
 
     end
 
@@ -83,8 +75,8 @@ module YandexPhotoStorage
       {}
     end
 
-    def request_uri
-      @request_uri ||= build_request_uri
+    def request_uri(_action)
+      raise 'not implemented'
     end
   end
 end

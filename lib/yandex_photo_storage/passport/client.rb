@@ -6,20 +6,22 @@ module YandexPhotoStorage
     #   client = YandexPhotoStorage::Passport::Client.new(access_token: Token.first.access_token)
     #   client.info
     class Client < ::YandexPhotoStorage::Client
-      ACTION_URL = 'https://login.yandex.ru'.freeze
+      ACTION_URL = 'https://login.yandex.ru/info'.freeze
       ACTIONS = %i[info].freeze
 
       # action - info
       def initialize(access_token:)
-        super(method: :get)
-
         @access_token = access_token
       end
 
       private
 
-      def build_request_uri
-        URI.parse("#{ACTION_URL}/#{@action}")
+      def http(_request_uri)
+        @http ||= super
+      end
+
+      def request_uri(_action)
+        @request_uri ||= URI.parse(ACTION_URL)
       end
 
       def request_headers

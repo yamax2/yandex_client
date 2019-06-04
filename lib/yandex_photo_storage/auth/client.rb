@@ -18,19 +18,19 @@ module YandexPhotoStorage
         refresh_token: 'refresh_token'
       }.freeze
 
-      def initialize
-        super method: :post
-      end
-
       private
 
-      def build_request_uri
-        URI.parse(AUTH_ACTION_URL)
+      def http(_request_uri)
+        @http ||= super
       end
 
-      def request_body(params)
+      def http_method_for_action(_action)
+        :post
+      end
+
+      def request_body(action, params)
         {
-          grant_type: ACTIONS.fetch(@action),
+          grant_type: ACTIONS.fetch(action),
           client_id: ::YandexPhotoStorage.config.api_key,
           client_secret: ::YandexPhotoStorage.config.api_secret
         }.merge!(params).to_query
@@ -40,6 +40,10 @@ module YandexPhotoStorage
         {
           'Content-type' => 'application/x-www-form-urlencoded'
         }
+      end
+
+      def request_uri(_action)
+        @request_uri ||= URI.parse(AUTH_ACTION_URL)
       end
     end
   end

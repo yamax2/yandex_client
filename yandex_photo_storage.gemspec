@@ -1,6 +1,6 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "yandex_photo_storage/version"
+require 'yandex_photo_storage/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'yandex_photo_storage'
@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rails', '>= 5.2', '< 6'
 
   spec.add_development_dependency 'appraisal', '>= 1.0.2'
-  spec.add_development_dependency 'bundler', '>= 1.17'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'combustion', '>= 0.9.1'
   spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency 'faker'
