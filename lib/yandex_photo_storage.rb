@@ -1,3 +1,4 @@
+require 'oj'
 require 'yandex_photo_storage/version'
 
 module YandexPhotoStorage

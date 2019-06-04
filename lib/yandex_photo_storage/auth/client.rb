@@ -16,7 +16,7 @@ module YandexPhotoStorage
       ACTIONS = {
         create_token: 'authorization_code',
         refresh_token: 'refresh_token'
-      }.with_indifferent_access.freeze
+      }.freeze
 
       def initialize
         super method: :post

@@ -9,14 +9,14 @@ Gem::Specification.new do |spec|
   spec.email         = ["max@tretyakov-ma.ru"]
 
   spec.summary       = %q{Yandex Photo Storage}
-  spec.description   = %q{Yandex Photo Storage}
+  spec.description   = %q{Allows to use yandex disk as webdav nodes}
   spec.homepage      = 'https://github.com/yamax2/yandex_photo_storage'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
     # spec.metadata["homepage_uri"] = spec.homepage
     # spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
@@ -35,6 +35,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.add_runtime_dependency 'oj'
 
   spec.add_development_dependency 'rails', '>= 5.2', '< 6'
 

@@ -10,13 +10,13 @@ module YandexPhotoStorage
     end
 
     def method_missing(method_name, *args, &_)
-      if self.class::ACTIONS.key?(method_name)
+      if self.class::ACTIONS.include?(method_name)
         @action = method_name
 
         result = nil
         response = make_request(args.last.is_a?(Hash) ? args.last : {})
 
-        result = JSON.parse(response.body).deep_symbolize_keys if response.body.present?
+        result = Oj.load(response.body, symbol_keys: true).deep_symbolize_keys if response.body.present?
         process_errors(response, result) unless response.is_a?(Net::HTTPOK)
 
         result
@@ -26,7 +26,7 @@ module YandexPhotoStorage
     end
 
     def respond_to_missing?(method_name, include_private = false)
-      self.class::ACTIONS.key?(method_name) || super
+      self.class::ACTIONS.include?(method_name) || super
     end
 
     private
@@ -46,10 +46,10 @@ module YandexPhotoStorage
       return unless (logger = YandexPhotoStorage.config.logger).present?
 
       logger.info "#{request.method} #{@request_uri} #{response.code} #{response.message}"
-      logger.info "request headers: #{request.to_hash.to_json}"
+      logger.info "request headers: #{Oj.dump(request.to_hash, mode: :json)}"
       logger.info "request body: #{request.body}" if request.body
 
-      logger.info "response headers: #{response.to_hash.to_json}"
+      logger.info "response headers: #{Oj.dump(response.to_hash, mode: :json)}"
       logger.info "response body: #{response.body}" if response.body
     end
 

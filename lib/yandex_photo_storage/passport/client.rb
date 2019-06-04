@@ -7,7 +7,7 @@ module YandexPhotoStorage
     #   client.info
     class Client < ::YandexPhotoStorage::Client
       ACTION_URL = 'https://login.yandex.ru'.freeze
-      ACTIONS = {info: nil}.with_indifferent_access.freeze
+      ACTIONS = %i[info].freeze
 
       # action - info
       def initialize(access_token:)
