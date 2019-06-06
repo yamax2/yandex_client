@@ -24,25 +24,25 @@ module YandexPhotoStorage
         @http ||= super
       end
 
-      def http_method_for_action(_action)
+      def http_method_for_action
         :post
       end
 
-      def request_body(action, params)
+      def request_body(params)
         {
-          grant_type: ACTIONS.fetch(action),
+          grant_type: ACTIONS.fetch(@action),
           client_id: ::YandexPhotoStorage.config.api_key,
           client_secret: ::YandexPhotoStorage.config.api_secret
         }.merge!(params).to_query
       end
 
-      def request_headers(_action, _params)
+      def request_headers(_params)
         {
           'Content-type' => 'application/x-www-form-urlencoded'
         }
       end
 
-      def request_uri(_action, _params)
+      def request_uri(_params)
         @request_uri ||= URI.parse(AUTH_ACTION_URL)
       end
     end

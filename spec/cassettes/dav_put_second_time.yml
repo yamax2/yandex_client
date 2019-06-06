@@ -1,0 +1,111 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://webdav.yandex.ru/01/test.txt
+    body:
+      encoding: UTF-8
+      string: |
+        Руыслӧн сям Коми кытшын небыта континентвывся: гожумыс кӧть и шоныт, а дженыт, тӧввез жӧ мукӧд воэзӧ сулалӧны ӧддьӧн ни
+        кӧдзытӧсь. Этійӧ позьӧ вежӧртны: кытшыс куйлӧ экваторсянь зэв ылын да и океан доррезсянь абу матын. Сійӧн и руыслӧн
+        тӧвся шонтӧгыс (температураыс) лажмытӧв, а неӧткодьыс тӧвся да гожумся шонтӧггез коласын ӧддьӧн ыджыт.
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Etag:
+      - befc0bc7091a305ae6df60f17e8af959
+      Sha256:
+      - 69dd27750dcc5eab8bd16cc70d97d23fed63f61375520eff3998fe88a1e59d6e
+      Expect:
+      - 100-continue
+      Content-Length:
+      - '618'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Thu, 06 Jun 2019 13:16:35 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-41bf7f6bd2d7a5a156b9c25182ae0a13-sas1-f63a5072adee
+      Yandex-Uid:
+      - '1130000019982670'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '10'
+      Connection:
+      - close
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: UTF-8
+      string: Hardlinked
+    http_version: 
+  recorded_at: Thu, 06 Jun 2019 13:16:35 GMT
+- request:
+    method: put
+    uri: https://webdav.yandex.ru/01/test.txt
+    body:
+      encoding: UTF-8
+      string: |
+        Руыслӧн сям Коми кытшын небыта континентвывся: гожумыс кӧть и шоныт, а дженыт, тӧввез жӧ мукӧд воэзӧ сулалӧны ӧддьӧн ни
+        кӧдзытӧсь. Этійӧ позьӧ вежӧртны: кытшыс куйлӧ экваторсянь зэв ылын да и океан доррезсянь абу матын. Сійӧн и руыслӧн
+        тӧвся шонтӧгыс (температураыс) лажмытӧв, а неӧткодьыс тӧвся да гожумся шонтӧггез коласын ӧддьӧн ыджыт.
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Etag:
+      - befc0bc7091a305ae6df60f17e8af959
+      Sha256:
+      - 69dd27750dcc5eab8bd16cc70d97d23fed63f61375520eff3998fe88a1e59d6e
+      Expect:
+      - 100-continue
+      Content-Length:
+      - '618'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Thu, 06 Jun 2019 13:16:35 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-7a4500b981843a8d5842327031d5d4f8-sas1-a951f99b4e79
+      Yandex-Uid:
+      - '1130000019982670'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '10'
+      Connection:
+      - close
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: UTF-8
+      string: Hardlinked
+    http_version: 
+  recorded_at: Thu, 06 Jun 2019 13:16:37 GMT
+recorded_with: VCR 5.0.0

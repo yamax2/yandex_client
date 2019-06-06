@@ -20,11 +20,11 @@ module YandexPhotoStorage
         @http ||= super
       end
 
-      def request_uri(_action, _params)
+      def request_uri(_params)
         @request_uri ||= URI.parse(ACTION_URL)
       end
 
-      def request_headers(_action, _params)
+      def request_headers(_params)
         {
           Authorization: "Bearer #{@access_token}"
         }

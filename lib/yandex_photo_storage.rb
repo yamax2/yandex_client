@@ -1,4 +1,3 @@
-require 'oj'
 require 'yandex_photo_storage/version'
 
 module YandexPhotoStorage
@@ -25,5 +24,6 @@ module YandexPhotoStorage
 
   module Dav
     autoload :Client, 'yandex_photo_storage/dav/client'
+    autoload :PropfindParser, 'yandex_photo_storage/dav/propfind_parser'
   end
 end

@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'oj'
+  spec.add_runtime_dependency 'ox'
 
   spec.add_development_dependency 'rails', '>= 5.2', '< 6'
 

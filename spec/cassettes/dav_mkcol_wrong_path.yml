@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: mkcol
+    uri: https://webdav.yandex.ru/02/03/04
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Date:
+      - Thu, 06 Jun 2019 12:54:30 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-24161b8d32b91611192ec1379d5feb58-myt1-95e18e6fce80
+      Yandex-Uid:
+      - '1130000019982670'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '34'
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: UTF-8
+      string: 'mkdir: parent folder was not found'
+    http_version: 
+  recorded_at: Thu, 06 Jun 2019 12:54:30 GMT
+recorded_with: VCR 5.0.0

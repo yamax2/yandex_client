@@ -6,8 +6,9 @@ module YandexPhotoStorage
     def method_missing(method_name, *args, &_)
       return super unless self.class::ACTIONS.include?(method_name)
 
+      @action  = method_name
       result = nil
-      response = make_request(method_name, args.last.is_a?(Hash) ? args.last : {})
+      response = make_request(args.last.is_a?(Hash) ? args.last : {})
 
       result = parse_response_body(response.body) if response.body.present?
       process_errors(response, result) unless response.is_a?(Net::HTTPSuccess)
@@ -28,7 +29,7 @@ module YandexPhotoStorage
       end
     end
 
-    def http_method_for_action(_action)
+    def http_method_for_action
       :get
     end
 
@@ -36,19 +37,20 @@ module YandexPhotoStorage
       return unless (logger = YandexPhotoStorage.config.logger).present?
 
       logger.info "#{request.method} #{request_uri} #{response.code} #{response.message}"
-      logger.info "request headers: #{Oj.dump(request.to_hash, mode: :json)}"
-      logger.info "response headers: #{Oj.dump(response.to_hash, mode: :json)}"
+      logger.info "request headers: #{request.to_hash.to_json}"
+      logger.info "response headers: #{response.to_hash.to_json}"
     end
 
-    def make_request(action, params)
-      request_uri = request_uri(action, params)
+    def make_request(params)
+      request_uri = request_uri(params)
+      @body = request_body(params)
 
-      request = "Net::HTTP::#{http_method_for_action(action).to_s.camelize}".constantize.new(
+      request = "Net::HTTP::#{http_method_for_action.to_s.camelize}".constantize.new(
         request_uri.request_uri,
-        request_headers(action, params)
+        request_headers(params)
       )
 
-      request.body = request_body(action, params)
+      request.body = @body
       response = http(request_uri).start { |http| http.request(request) }
 
       log_api_request(request_uri, request, response)
@@ -57,26 +59,26 @@ module YandexPhotoStorage
     end
 
     def parse_response_body(body)
-      Oj.load(body, symbol_keys: true)
+      JSON.parse(body).deep_symbolize_keys
     end
 
     def process_errors(response, result)
       raise ApiRequestError.new(
-        error: result&.fetch(:error),
-        error_description: result&.fetch(:error_description),
+        error: result.is_a?(Hash) ? result&.fetch(:error) : result,
+        error_description: result.is_a?(Hash) ? result&.fetch(:error_description) : nil,
         code: response.code
       )
     end
 
-    def request_body(_action, _params)
+    def request_body(_params)
 
     end
 
-    def request_headers(_action, _params)
+    def request_headers(_params)
       {}
     end
 
-    def request_uri(_action, _params)
+    def request_uri(_params)
       raise 'not implemented'
     end
   end
