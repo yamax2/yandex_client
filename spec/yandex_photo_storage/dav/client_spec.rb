@@ -45,6 +45,16 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
         expect { subject }.to raise_error(KeyError)
       end
     end
+
+    context 'when quota query' do
+      subject do
+        VCR.use_cassette('dav_propfind_quota') { service.propfind(name: '/', quota: true) }
+      end
+
+      it do
+        expect(subject['/']).to include(:'quota-used-bytes', :'quota-available-bytes')
+      end
+    end
   end
 
   describe '#mkcol' do

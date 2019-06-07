@@ -12,9 +12,18 @@ module YandexPhotoStorage
     #
     # cli.propfind(name: '/a/dip.yml', depth: 0)
     # cli.propfind(name: '/a', depth: 1)
+    # cli.propfind(name: '/', quota: true)
     class Client < ::YandexPhotoStorage::Client
       ACTION_URL = 'https://webdav.yandex.ru'.freeze
       PROPFIND_QUERY = '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>'.freeze
+      PROPFIND_QUOTA_QUERY = <<~XML.freeze
+        <D:propfind xmlns:D="DAV:">
+          <D:prop>
+            <D:quota-available-bytes/>
+            <D:quota-used-bytes/>
+          </D:prop>
+        </D:propfind>
+      XML
 
       # actions with header processors
       ACTIONS = {
@@ -33,20 +42,28 @@ module YandexPhotoStorage
         end,
 
         propfind: lambda do |params|
+          depth = 0
+          depth = params.fetch(:depth, 0) unless params.key?(:quota)
+
           headers = {
-            Depth: params.fetch(:depth, 0).to_s,
+            Depth: depth.to_s,
             'Content-Type' => 'application/x-www-form-urlencoded'
           }
 
           headers['Content-Length'] = @body.length if @body.present?
-
           headers
         end
       }.freeze
 
       BODY_PROCESSORS = {
         put: ->(params) { File.read(params.fetch(:file)) },
-        propfind: ->(params) { params.fetch(:depth, 0).zero? ? PROPFIND_QUERY : nil }
+        propfind: lambda do |params|
+          if params.fetch(:quota, false)
+            PROPFIND_QUOTA_QUERY
+          elsif params.fetch(:depth, 0).zero?
+            PROPFIND_QUERY
+          end
+        end
       }.freeze
 
       RESPONSE_PARSERS = {
