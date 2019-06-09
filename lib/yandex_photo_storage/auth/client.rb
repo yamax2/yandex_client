@@ -8,8 +8,9 @@ module YandexPhotoStorage
     # Example:
     #   token = Token.first
     #
-    #   client = YandexPhotoStorage::Auth::Client.new(refresh_token: token.refresh_token).refresh_token
+    #   client = YandexPhotoStorage::Auth::Client.new
     #   client.create_token(code: '9388894')
+    #   client.refresh_token(refresh_token: token.refresh_token)
     class Client < ::YandexPhotoStorage::Client
       AUTH_ACTION_URL = 'https://oauth.yandex.ru/token'.freeze
 
