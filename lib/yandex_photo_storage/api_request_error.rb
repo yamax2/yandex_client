@@ -1,6 +1,6 @@
 module YandexPhotoStorage
   class ApiRequestError < StandardError
-    attr_accessor :error, :error_description
+    attr_accessor :error, :error_description, :code
 
     def initialize(error:, error_description:, code:)
       @error = error
