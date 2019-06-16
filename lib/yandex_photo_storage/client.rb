@@ -6,11 +6,11 @@ module YandexPhotoStorage
     def method_missing(method_name, *args, &_)
       return super unless self.class::ACTIONS.include?(method_name)
 
-      @action  = method_name
+      @action = method_name
       result = nil
       response = make_request(args.last.is_a?(Hash) ? args.last : {})
 
-      result = parse_response_body(response.body) if response.body.present?
+      result = parse_response_body(response) if response.body.present?
       process_errors(response, result) unless response.is_a?(Net::HTTPSuccess)
 
       result
@@ -58,8 +58,8 @@ module YandexPhotoStorage
       response
     end
 
-    def parse_response_body(body)
-      JSON.parse(body).deep_symbolize_keys
+    def parse_response_body(response)
+      JSON.parse(response.body).deep_symbolize_keys
     end
 
     def process_errors(response, result)

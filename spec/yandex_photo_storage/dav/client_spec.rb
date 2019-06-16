@@ -55,6 +55,16 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
         expect(subject['/']).to include(:'quota-used-bytes', :'quota-available-bytes')
       end
     end
+
+    context 'when object does not exist' do
+      subject do
+        VCR.use_cassette('dav_propfind_404') { service.propfind(name: '/photo1') }
+      end
+
+      it do
+        expect { subject }.to raise_error(YandexPhotoStorage::ApiRequestError, 'resource not found, http code 404')
+      end
+    end
   end
 
   describe '#mkcol' do

@@ -80,11 +80,11 @@ module YandexPhotoStorage
         @action
       end
 
-      def parse_response_body(body)
-        if (parser = RESPONSE_PARSERS[@action]).present?
-          parser.call(body)
+      def parse_response_body(response)
+        if response.is_a?(Net::HTTPSuccess) && (parser = RESPONSE_PARSERS[@action]).present?
+          parser.call(response.body)
         else
-          body
+          response.body
         end
       end
 
