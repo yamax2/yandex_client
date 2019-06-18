@@ -33,11 +33,15 @@ module YandexPhotoStorage
         put: lambda do |params|
           filename = params.fetch(:file)
 
+          etag = params[:etag] || Digest::MD5.file(filename)
+          sha256 = params[:sha256] || Digest::SHA256.file(filename)
+          size = params[:size] || File.size(filename)
+
           {
-            Etag: Digest::MD5.file(filename).to_s,
-            Sha256: Digest::SHA256.file(filename).to_s,
+            Etag: etag.to_s,
+            Sha256: sha256.to_s,
             Expect: '100-continue',
-            'Content-Length' => File.size(filename).to_s
+            'Content-Length' => size.to_s
           }
         end,
 

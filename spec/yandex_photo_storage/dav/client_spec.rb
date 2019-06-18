@@ -169,6 +169,33 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
         expect { subject }.to raise_error(Errno::ENOENT)
       end
     end
+
+    context 'when call with file attributes' do
+      before do
+        stub_request(:put, /webdav.yandex.ru/).to_return(
+          status: 200,
+          body: 'Hardlinked'
+        )
+
+        allow(File).to receive(:size)
+        allow(Digest::SHA256).to receive(:file)
+        allow(Digest::MD5).to receive(:file)
+
+        service.put(
+          name: '/01/test.txt',
+          file: 'spec/fixtures/test.txt',
+          etag: 'tag',
+          sha256: 256,
+          size: 1024
+        )
+      end
+
+      it do
+        expect(File).not_to have_received(:size)
+        expect(Digest::SHA256).not_to have_received(:file)
+        expect(Digest::MD5).not_to have_received(:file)
+      end
+    end
   end
 
   describe 'wrong action' do
