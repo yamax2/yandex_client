@@ -26,6 +26,7 @@ module YandexPhotoStorage
       Net::HTTP.new(request_uri.host, request_uri.port).tap do |http|
         http.use_ssl = true
         http.read_timeout = TIMEOUT
+        http.continue_timeout = TIMEOUT
       end
     end
 
