@@ -3,6 +3,10 @@ module YandexPhotoStorage
   class Client
     TIMEOUT = 10
 
+    ERRORS_BY_CODES = {
+      404 => NotFoundError
+    }.freeze
+
     def method_missing(method_name, *args, &_)
       return super unless self.class::ACTIONS.include?(method_name)
 
@@ -64,10 +68,12 @@ module YandexPhotoStorage
     end
 
     def process_errors(response, result)
-      raise ApiRequestError.new(
+      klass = ERRORS_BY_CODES.fetch(response.code.to_i, ApiRequestError)
+
+      raise klass.new(
         error: result.is_a?(Hash) ? result&.fetch(:error) : result,
         error_description: result.is_a?(Hash) ? result&.fetch(:error_description) : nil,
-        code: response.code
+        code: response.code.to_i
       )
     end
 

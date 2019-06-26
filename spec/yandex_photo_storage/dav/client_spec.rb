@@ -62,7 +62,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
       end
 
       it do
-        expect { subject }.to raise_error(YandexPhotoStorage::ApiRequestError, 'resource not found, http code 404')
+        expect { subject }.to raise_error(YandexPhotoStorage::NotFoundError, 'resource not found, http code 404')
       end
     end
   end
@@ -126,7 +126,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'resource not found, http code 404')
+          to raise_error(YandexPhotoStorage::NotFoundError, 'resource not found, http code 404')
       end
     end
   end

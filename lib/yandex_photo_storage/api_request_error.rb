@@ -5,7 +5,7 @@ module YandexPhotoStorage
     def initialize(error:, error_description:, code:)
       @error = error
       @error_description = error_description
-      @code = code.to_i
+      @code = code
 
       super [error, error_description, "http code #{@code}"].compact.join(', ')
     end
