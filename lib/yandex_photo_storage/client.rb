@@ -1,3 +1,5 @@
+require 'net/http'
+
 module YandexPhotoStorage
   # Base api client
   class Client
