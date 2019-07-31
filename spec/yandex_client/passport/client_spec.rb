@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-RSpec.describe YandexPhotoStorage::Passport::Client do
+RSpec.describe YandexClient::Passport::Client do
   let(:access_token) { 'access_token' }
   let(:service) { described_class.new(access_token: access_token) }
   let(:logger) { instance_double(Logger) }
 
   before do
-    allow(YandexPhotoStorage.config).to receive(:logger).and_return(logger)
+    allow(YandexClient.config).to receive(:logger).and_return(logger)
     allow(logger).to receive(:info)
   end
 
@@ -34,7 +34,7 @@ RSpec.describe YandexPhotoStorage::Passport::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'http code 401')
+          to raise_error(YandexClient::ApiRequestError, 'http code 401')
 
         expect(logger).to have_received(:info).exactly(3).times
       end

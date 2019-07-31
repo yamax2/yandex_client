@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.describe YandexPhotoStorage::Auth::Client do
+RSpec.describe YandexClient::Auth::Client do
   let(:logger) { instance_double(Logger) }
   let(:service) { described_class.new }
 
   before do
-    allow(YandexPhotoStorage.config).to receive(:api_key).and_return(API_APPLICATION_KEY)
-    allow(YandexPhotoStorage.config).to receive(:api_secret).and_return(API_APPLICATION_SECRET)
-    allow(YandexPhotoStorage.config).to receive(:logger).and_return(logger)
+    allow(YandexClient.config).to receive(:api_key).and_return(API_APPLICATION_KEY)
+    allow(YandexClient.config).to receive(:api_secret).and_return(API_APPLICATION_SECRET)
+    allow(YandexClient.config).to receive(:logger).and_return(logger)
 
     allow(logger).to receive(:info)
   end
@@ -29,7 +29,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'bad_verification_code, Invalid code, http code 400')
+          to raise_error(YandexClient::ApiRequestError, 'bad_verification_code, Invalid code, http code 400')
 
         expect(logger).to have_received(:info).exactly(3).times
       end
@@ -37,15 +37,15 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
     context 'when incorrect api app keys' do
       before do
-        allow(YandexPhotoStorage.config). to receive(:api_key).and_return('wrong')
-        allow(YandexPhotoStorage.config). to receive(:api_secret).and_return('wrong')
+        allow(YandexClient.config). to receive(:api_key).and_return('wrong')
+        allow(YandexClient.config). to receive(:api_secret).and_return('wrong')
       end
 
       subject { VCR.use_cassette('auth_create_token_wrong_keys') { service.create_token(code: 100_500) } }
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_client, Client not found, http code 400')
+          to raise_error(YandexClient::ApiRequestError, 'invalid_client, Client not found, http code 400')
 
         expect(logger).to have_received(:info).exactly(3).times
       end
@@ -56,7 +56,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_request, code not in POST, http code 400')
+          to raise_error(YandexClient::ApiRequestError, 'invalid_request, code not in POST, http code 400')
 
         expect(logger).to have_received(:info).exactly(3).times
       end
@@ -67,7 +67,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_grant, Code has expired, http code 400')
+          to raise_error(YandexClient::ApiRequestError, 'invalid_grant, Code has expired, http code 400')
 
         expect(logger).to have_received(:info).exactly(3).times
       end
@@ -100,7 +100,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_grant, expired_token, http code 400')
+          to raise_error(YandexClient::ApiRequestError, 'invalid_grant, expired_token, http code 400')
 
         expect(logger).to have_received(:info).exactly(3).times
       end
@@ -108,8 +108,8 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
     context 'when incorrect api app keys' do
       before do
-        allow(YandexPhotoStorage.config). to receive(:api_key).and_return('wrong')
-        allow(YandexPhotoStorage.config). to receive(:api_secret).and_return('wrong')
+        allow(YandexClient.config). to receive(:api_key).and_return('wrong')
+        allow(YandexClient.config). to receive(:api_secret).and_return('wrong')
       end
 
       subject do
@@ -118,7 +118,7 @@ RSpec.describe YandexPhotoStorage::Auth::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'invalid_client, Client not found, http code 400')
+          to raise_error(YandexClient::ApiRequestError, 'invalid_client, Client not found, http code 400')
 
         expect(logger).to have_received(:info).exactly(3).times
       end

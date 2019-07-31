@@ -1,16 +1,16 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'yandex_photo_storage/version'
+require 'yandex_client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'yandex_photo_storage'
-  spec.version       = YandexPhotoStorage::VERSION
+  spec.name          = 'yandex_client'
+  spec.version       = YandexClient::VERSION
   spec.authors       = ['Maxim Tretyakov']
   spec.email         = ['max@tretyakov-ma.ru']
 
-  spec.summary       = %q{Yandex Photo Storage}
+  spec.summary       = %q{Yandex Client}
   spec.description   = %q{Allows to use yandex disk as webdav nodes}
-  spec.homepage      = 'https://github.com/yamax2/yandex_photo_storage'
+  spec.homepage      = 'https://github.com/yamax2/yandex_client'
   spec.license       = 'MIT'
 
   spec.files = Dir.chdir(File.expand_path('..', __FILE__)) do

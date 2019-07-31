@@ -13,5 +13,4 @@
 .idea
 .byebug_history
 
-/gemfiles/
 Gemfile.lock

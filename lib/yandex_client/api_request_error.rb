@@ -1,4 +1,4 @@
-module YandexPhotoStorage
+module YandexClient
   class ApiRequestError < StandardError
     attr_reader :error, :error_description, :code
 

@@ -9,7 +9,7 @@ compose:
   files:
     - docker/docker-compose.yml
     - docker/docker-compose.${COMPOSE_FILE_EXT}.yml
-  project_name: yandex_photo_storage
+  project_name: yandex_client
 
 interaction:
   sh:
@@ -33,7 +33,7 @@ interaction:
 
   clean:
     service: app
-    command: rm -f Gemfile.lock gemfiles/*.gemfile.*
+    command: rm -f Gemfile.lock
 
 provision:
   - docker volume create --name bundler_data

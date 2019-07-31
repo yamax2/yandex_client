@@ -1,7 +1,7 @@
 require 'oj'
 require 'net/http'
 
-module YandexPhotoStorage
+module YandexClient
   # Base api client
   class Client
     TIMEOUT = 10
@@ -44,7 +44,7 @@ module YandexPhotoStorage
     end
 
     def log_api_request(request_uri, request, response)
-      return if (logger = YandexPhotoStorage.config.logger).nil?
+      return if (logger = YandexClient.config.logger).nil?
 
       logger.info "#{request.method} #{request_uri} #{response.code} #{response.message}"
       logger.info "request headers: #{Oj.dump(request.to_hash)}"

@@ -1,11 +1,11 @@
-# YandexPhotoStorage
+# YandexClient
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'yandex_photo_storage'
+gem 'yandex_client'
 ```
 
 And then execute:
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install yandex_photo_storage
+    $ gem install yandex_client
 
 ## Usage
 
@@ -52,7 +52,7 @@ dip psql
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/yamax2/yandex_photo_storage.
+Bug reports and pull requests are welcome on GitHub at https://github.com/yamax2/yandex_client.
 
 ## License
 

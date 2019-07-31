@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'yandex_photo_storage'
-
-require File.expand_path('../../spec/internal/config/boot', __FILE__)
+require 'yandex_client'
 
 Pry.start

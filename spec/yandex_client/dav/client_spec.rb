@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe YandexPhotoStorage::Dav::Client do
+RSpec.describe YandexClient::Dav::Client do
   let(:service) { described_class.new(access_token: API_ACCESS_TOKEN) }
 
   describe '#propfind' do
@@ -26,7 +26,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
       end
 
       it do
-        expect { subject }.to raise_error(YandexPhotoStorage::ApiRequestError, 'http code 403')
+        expect { subject }.to raise_error(YandexClient::ApiRequestError, 'http code 403')
       end
     end
 
@@ -62,7 +62,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
       end
 
       it do
-        expect { subject }.to raise_error(YandexPhotoStorage::NotFoundError, 'resource not found, http code 404')
+        expect { subject }.to raise_error(YandexClient::NotFoundError, 'resource not found, http code 404')
       end
     end
   end
@@ -86,7 +86,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'mkdir: resource already exists, http code 405')
+          to raise_error(YandexClient::ApiRequestError, 'mkdir: resource already exists, http code 405')
       end
     end
 
@@ -97,7 +97,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'mkdir: parent folder was not found, http code 409')
+          to raise_error(YandexClient::ApiRequestError, 'mkdir: parent folder was not found, http code 409')
       end
     end
   end
@@ -126,7 +126,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::NotFoundError, 'resource not found, http code 404')
+          to raise_error(YandexClient::NotFoundError, 'resource not found, http code 404')
       end
     end
   end
@@ -158,7 +158,7 @@ RSpec.describe YandexPhotoStorage::Dav::Client do
 
       it do
         expect { subject }.
-          to raise_error(YandexPhotoStorage::ApiRequestError, 'store: parent folder was not found, http code 409')
+          to raise_error(YandexClient::ApiRequestError, 'store: parent folder was not found, http code 409')
       end
     end
 

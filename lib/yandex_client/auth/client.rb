@@ -1,6 +1,6 @@
 require 'uri'
 
-module YandexPhotoStorage
+module YandexClient
   module Auth
     # https://tech.yandex.ru/oauth/doc/dg/reference/refresh-client-docpage/
     # https://tech.yandex.ru/oauth/doc/dg/reference/auto-code-client-docpage/#auto-code-client__get-token
@@ -10,10 +10,10 @@ module YandexPhotoStorage
     # Example:
     #   token = Token.first
     #
-    #   client = YandexPhotoStorage::Auth::Client.new
+    #   client = YandexClient::Auth::Client.new
     #   client.create_token(code: '9388894')
     #   client.refresh_token(refresh_token: token.refresh_token)
-    class Client < ::YandexPhotoStorage::Client
+    class Client < ::YandexClient::Client
       AUTH_ACTION_URL = 'https://oauth.yandex.ru/token'.freeze
 
       ACTIONS = {
@@ -34,8 +34,8 @@ module YandexPhotoStorage
       def request_body(params)
         body_hash = {
           grant_type: ACTIONS.fetch(@action),
-          client_id: ::YandexPhotoStorage.config.api_key,
-          client_secret: ::YandexPhotoStorage.config.api_secret
+          client_id: ::YandexClient.config.api_key,
+          client_secret: ::YandexClient.config.api_secret
         }.merge!(params)
 
         URI.encode_www_form(body_hash)

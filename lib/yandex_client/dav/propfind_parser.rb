@@ -1,7 +1,7 @@
 require 'ox'
 require 'cgi'
 
-module YandexPhotoStorage
+module YandexClient
   module Dav
     class PropfindParser
       SUCCESS_STATUS = 'HTTP/1.1 200 OK'.freeze

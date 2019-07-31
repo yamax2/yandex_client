@@ -1,7 +1,7 @@
 require 'bundler/setup'
 require 'pry-byebug'
 require 'logger'
-require 'yandex_photo_storage'
+require 'yandex_client'
 
 require 'webmock/rspec'
 require 'vcr'

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe YandexPhotoStorage::Dav::PropfindParser do
+RSpec.describe YandexClient::Dav::PropfindParser do
   subject { described_class.call(xml) }
 
   context 'when depth is 0' do

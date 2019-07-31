@@ -1,10 +1,10 @@
 require 'digest'
 
-module YandexPhotoStorage
+module YandexClient
   module Dav
     # https://tech.yandex.ru/disk/doc/dg/reference/put-docpage/
     #
-    # cli = YandexPhotoStorage::Dav::Client.new(access_token: access_token)
+    # cli = YandexClient::Dav::Client.new(access_token: access_token)
     #
     # cli.put(file: '1.txt', name: '/a/b/c/1.txt')
     # cli.delete(name: '/a/b/c/1.txt')
@@ -13,7 +13,7 @@ module YandexPhotoStorage
     # cli.propfind(name: '/a/dip.yml', depth: 0)
     # cli.propfind(name: '/a', depth: 1)
     # cli.propfind(name: '/', quota: true)
-    class Client < ::YandexPhotoStorage::Client
+    class Client < ::YandexClient::Client
       ACTION_URL = 'https://webdav.yandex.ru'.freeze
       PROPFIND_QUERY = '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>'.freeze
       PROPFIND_QUOTA_QUERY = <<~XML.freeze
