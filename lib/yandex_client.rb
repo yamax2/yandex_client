@@ -1,7 +1,7 @@
 require 'yandex_client/version'
 
 module YandexClient
-  Config = Struct.new(:api_key, :api_secret, :logger, :token_model_klass)
+  Config = Struct.new(:api_key, :api_secret, :logger)
 
   def self.config
     @config ||= Config.new
