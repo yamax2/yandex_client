@@ -12,10 +12,3 @@ services:
       - TEST_DB_NAME=docker
       - TEST_DB_USERNAME=postgres
     command: bash
-    depends_on:
-      - db
-
-  db:
-    image: postgres:$POSTGRES_IMAGE_TAG
-    environment:
-      - POSTGRES_DB=docker

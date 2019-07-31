@@ -3,10 +3,6 @@ RSpec.describe YandexPhotoStorage do
     expect(YandexPhotoStorage::VERSION).not_to be nil
   end
 
-  it 'works with pg' do
-    expect { ActiveRecord::Base.connection.execute('select version()') }.not_to raise_error
-  end
-
   describe '.configure' do
     it 'yields a config object' do
       expect { |b| described_class.configure(&b) }.to yield_with_args(described_class::Config)

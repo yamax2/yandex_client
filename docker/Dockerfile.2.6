@@ -4,6 +4,6 @@ RUN ln -fs /usr/share/zoneinfo/Asia/Yekaterinburg /etc/localtime \
   && dpkg-reconfigure -f noninteractive tzdata
 
 RUN echo 'gem: --no-rdoc --no-ri --no-document' > /root/.gemrc
-RUN gem install bundler --version 1.17.3
+RUN gem install bundler
 
 WORKDIR /app

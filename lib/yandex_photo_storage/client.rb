@@ -1,9 +1,12 @@
+require 'oj'
 require 'net/http'
 
 module YandexPhotoStorage
   # Base api client
   class Client
     TIMEOUT = 10
+    METHOD_GET = 'Get'.freeze
+    METHOD_POST = 'Post'.freeze
 
     ERRORS_BY_CODES = {
       404 => NotFoundError
@@ -16,7 +19,7 @@ module YandexPhotoStorage
       result = nil
       response = make_request(args.last.is_a?(Hash) ? args.last : {})
 
-      result = parse_response_body(response) if response.body.present?
+      result = parse_response_body(response) unless response.body.nil? || response.body.empty?
       process_errors(response, result) unless response.is_a?(Net::HTTPSuccess)
 
       result
@@ -37,22 +40,22 @@ module YandexPhotoStorage
     end
 
     def http_method_for_action
-      :get
+      METHOD_GET
     end
 
     def log_api_request(request_uri, request, response)
-      return unless (logger = YandexPhotoStorage.config.logger).present?
+      return if (logger = YandexPhotoStorage.config.logger).nil?
 
       logger.info "#{request.method} #{request_uri} #{response.code} #{response.message}"
-      logger.info "request headers: #{request.to_hash.to_json}"
-      logger.info "response headers: #{response.to_hash.to_json}"
+      logger.info "request headers: #{Oj.dump(request.to_hash)}"
+      logger.info "response headers: #{Oj.dump(response.to_hash)}"
     end
 
     def make_request(params)
       request_uri = request_uri(params)
       @body = request_body(params)
 
-      request = "Net::HTTP::#{http_method_for_action.to_s.camelize}".constantize.new(
+      request = Object.const_get("Net::HTTP::#{http_method_for_action}").new(
         request_uri.request_uri,
         request_headers(params)
       )
@@ -66,7 +69,7 @@ module YandexPhotoStorage
     end
 
     def parse_response_body(response)
-      JSON.parse(response.body).deep_symbolize_keys
+      Oj.load(response.body, symbol_keys: true)
     end
 
     def process_errors(response, result)

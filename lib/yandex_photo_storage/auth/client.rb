@@ -1,3 +1,5 @@
+require 'uri'
+
 module YandexPhotoStorage
   module Auth
     # https://tech.yandex.ru/oauth/doc/dg/reference/refresh-client-docpage/
@@ -26,15 +28,17 @@ module YandexPhotoStorage
       end
 
       def http_method_for_action
-        :post
+        METHOD_POST
       end
 
       def request_body(params)
-        {
+        body_hash = {
           grant_type: ACTIONS.fetch(@action),
           client_id: ::YandexPhotoStorage.config.api_key,
           client_secret: ::YandexPhotoStorage.config.api_secret
-        }.merge!(params).to_query
+        }.merge!(params)
+
+        URI.encode_www_form(body_hash)
       end
 
       def request_headers(_params)

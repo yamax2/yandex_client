@@ -54,7 +54,7 @@ module YandexPhotoStorage
             'Content-Type' => 'application/x-www-form-urlencoded'
           }
 
-          headers['Content-Length'] = @body.length if @body.present?
+          headers['Content-Length'] = @body.length unless @body.nil? || @body.empty?
           headers
         end
       }.freeze
@@ -81,11 +81,11 @@ module YandexPhotoStorage
       private
 
       def http_method_for_action
-        @action
+        @action.to_s.capitalize
       end
 
       def parse_response_body(response)
-        if response.is_a?(Net::HTTPSuccess) && (parser = RESPONSE_PARSERS[@action]).present?
+        if response.is_a?(Net::HTTPSuccess) && !(parser = RESPONSE_PARSERS[@action]).nil?
           parser.call(response.body)
         else
           response.body
@@ -93,7 +93,7 @@ module YandexPhotoStorage
       end
 
       def request_body(params)
-        return unless (proc = BODY_PROCESSORS[@action]).present?
+        return if (proc = BODY_PROCESSORS[@action]).nil?
 
         proc.call(params)
       end
@@ -102,7 +102,7 @@ module YandexPhotoStorage
         proc = ACTIONS.fetch(@action)
 
         headers = {Authorization: "OAuth #{@access_token}"}
-        headers.merge!(proc.call(params)) if proc.present?
+        headers.merge!(proc.call(params)) unless proc.nil?
 
         headers
       end

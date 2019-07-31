@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
+  spec.files = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   end
 
@@ -23,19 +23,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_runtime_dependency 'oj'
   spec.add_runtime_dependency 'ox'
-  spec.add_development_dependency 'rails', '>= 5.2', '< 6'
 
-  spec.add_development_dependency 'appraisal', '>= 1.0.2'
   spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'combustion', '>= 0.9.1'
-  spec.add_development_dependency 'factory_bot_rails'
-  spec.add_development_dependency 'faker'
-  spec.add_development_dependency 'pg'
   spec.add_development_dependency 'rake', '>= 10'
   spec.add_development_dependency 'rspec', '>= 3.0'
-  spec.add_development_dependency 'rspec-rails', '>= 3.7'
-  spec.add_development_dependency 'shoulda-matchers'
   spec.add_development_dependency 'vcr'
   spec.add_development_dependency 'webmock'
 

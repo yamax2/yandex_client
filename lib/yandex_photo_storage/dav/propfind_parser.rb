@@ -20,7 +20,7 @@ module YandexPhotoStorage
 
       def call
         @document[:'d:multistatus'].each_with_object({}) do |node, memo|
-          next unless (response = node[:'d:response']).present?
+          next if (response = node[:'d:response']).nil?
 
           name = CGI.unescape(response.fetch(:'d:href'))
           memo[name] = parse_node_props(response.fetch(:'d:propstat'))
@@ -40,7 +40,7 @@ module YandexPhotoStorage
           prop_key = key.to_s.gsub(/^d:/, '').to_sym
           processor = PROCESSORS[prop_key]
 
-          memo[prop_key] = processor.present? ? processor.call(value) : value
+          memo[prop_key] = processor.nil? ? value : processor.call(value)
         end
       end
     end
