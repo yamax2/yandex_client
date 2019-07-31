@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yamax2/yandex_client.svg?branch=master)](https://travis-ci.org/yamax2/yandex_client)
+
 # YandexClient
 
 ## Installation
