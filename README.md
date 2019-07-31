@@ -18,7 +18,65 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### [Auth](https://yandex.ru/dev/oauth/doc/dg/concepts/about-docpage/)
+```ruby
+cli = YandexClient::Auth::Client.new
+```
+
+[create_token](https://tech.yandex.ru/oauth/doc/dg/reference/auto-code-client-docpage/#auto-code-client__get-token)
+```ruby
+cli.create_token(code: 'your_code')
+```
+
+[refresh_token](https://yandex.ru/dev/oauth/doc/dg/reference/refresh-client-docpage/)
+```ruby
+cli.refresh_token(refresh_token: 'your_token')
+```
+
+### [Passport](https://tech.yandex.ru/passport/doc/dg/reference/)
+```ruby
+cli = YandexClient::Passport::Client.new(access_token: 'your_access_token')
+```
+
+[info](https://yandex.ru/dev/passport/doc/dg/reference/request-docpage/)
+```ruby
+cli.info
+```
+
+### [Yandex Disk WebDav](https://yandex.ru/dev/disk/doc/dg/concepts/quickstart-docpage/)
+```ruby
+cli = YandexClient::Dav::Client.new(access_token: 'your_token')
+```
+
+[put](https://yandex.ru/dev/disk/doc/dg/reference/put-docpage/)
+```ruby
+cli.put(file: '1.txt', name: '/a/b/c/1.txt')
+```
+
+[delete](https://yandex.ru/dev/disk/doc/dg/reference/delete-docpage/)
+```ruby
+cli.delete(name: '/a/b/c/1.txt')
+```
+
+[mkcol](https://yandex.ru/dev/disk/doc/dg/reference/mkcol-docpage/)
+```ruby
+cli.mkcol(name: '/a/b/c')
+```
+
+[file props](https://yandex.ru/dev/disk/doc/dg/reference/property-request-docpage/)
+```ruby
+cli.propfind(name: '/a/dip.yml', depth: 0)
+```
+
+[list files in dir](https://yandex.ru/dev/disk/doc/dg/reference/property-request-docpage/)
+```ruby
+cli.propfind(name: '/a', depth: 1)
+```
+
+[account free space and quota](https://yandex.ru/dev/disk/doc/dg/reference/property-request-docpage/)
+```ruby
+cli.propfind(name: '/', quota: true)
+```
 
 ## Development
 
@@ -41,14 +99,9 @@ dip provision
 ```bash
 dip rspec
 ```
-* Run rails console
-```bash
-dip rails_console
-```
-* Run psql
-```bash
-dip psql
-```
+
+## TODO
+* docs...
 
 ## Contributing
 
