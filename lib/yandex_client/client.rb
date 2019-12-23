@@ -6,7 +6,6 @@ require 'net/http'
 module YandexClient
   # Base api client
   class Client
-    DEFAULT_TIMEOUT = 10
     METHOD_GET = 'Get'
     METHOD_POST = 'Post'
 
@@ -36,8 +35,8 @@ module YandexClient
     def http(request_uri)
       Net::HTTP.new(request_uri.host, request_uri.port).tap do |http|
         http.use_ssl = true
-        http.read_timeout = DEFAULT_TIMEOUT
-        http.continue_timeout = DEFAULT_TIMEOUT
+        http.read_timeout = YandexClient.config.read_timeout
+        http.continue_timeout = YandexClient.config.read_timeout
       end
     end
 

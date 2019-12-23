@@ -15,9 +15,12 @@ RSpec.describe YandexClient do
     it do
       expect(described_class.config).to be_a(described_class::Config)
 
-      %i[api_key api_secret logger].each do |key|
+      %i[api_key api_secret logger read_timeout].each do |key|
         expect(described_class.config).to respond_to(key)
+        expect(described_class.config).to respond_to("#{key}=")
       end
+
+      expect(described_class.config.read_timeout).to eq(10)
     end
   end
 end

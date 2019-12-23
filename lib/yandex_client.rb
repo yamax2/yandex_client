@@ -3,10 +3,10 @@
 require 'yandex_client/version'
 
 module YandexClient
-  Config = Struct.new(:api_key, :api_secret, :logger)
+  Config = Struct.new(:api_key, :api_secret, :logger, :read_timeout)
 
   def self.config
-    @config ||= Config.new
+    @config ||= Config.new(nil, nil, nil, 10)
   end
 
   def self.configure
