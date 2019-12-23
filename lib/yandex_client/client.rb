@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'oj'
 require 'net/http'
 
 module YandexClient
   # Base api client
   class Client
-    TIMEOUT = 10
-    METHOD_GET = 'Get'.freeze
-    METHOD_POST = 'Post'.freeze
+    DEFAULT_TIMEOUT = 10
+    METHOD_GET = 'Get'
+    METHOD_POST = 'Post'
 
     ERRORS_BY_CODES = {
       404 => NotFoundError
@@ -34,8 +36,8 @@ module YandexClient
     def http(request_uri)
       Net::HTTP.new(request_uri.host, request_uri.port).tap do |http|
         http.use_ssl = true
-        http.read_timeout = TIMEOUT
-        http.continue_timeout = TIMEOUT
+        http.read_timeout = DEFAULT_TIMEOUT
+        http.continue_timeout = DEFAULT_TIMEOUT
       end
     end
 
@@ -83,7 +85,6 @@ module YandexClient
     end
 
     def request_body(_params)
-
     end
 
     def request_headers(_params)

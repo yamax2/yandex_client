@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module YandexClient
   class ApiRequestError < StandardError
     attr_reader :error, :error_description, :code

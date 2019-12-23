@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler/setup'
 require 'pry-byebug'
 require 'logger'
@@ -15,11 +17,11 @@ RSpec.configure do |config|
   end
 end
 
-API_APPLICATION_KEY = 'key'.freeze
-API_APPLICATION_SECRET = 'secret'.freeze
+API_APPLICATION_KEY = 'key'
+API_APPLICATION_SECRET = 'secret'
 
-API_ACCESS_TOKEN = 'access'.freeze
-API_REFRESH_TOKEN = 'refresh'.freeze
+API_ACCESS_TOKEN = 'access'
+API_REFRESH_TOKEN = 'refresh'
 
 VCR.configure do |c|
   c.ignore_localhost = true

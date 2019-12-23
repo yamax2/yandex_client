@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe YandexClient::Dav::PropfindParser do
@@ -15,19 +17,21 @@ RSpec.describe YandexClient::Dav::PropfindParser do
     let(:xml) { File.read('spec/fixtures/propfind_depth1.xml') }
 
     it do
-      expect(subject.keys).to match_array(%w[
-        /
-        /01/
-        /Max/
-        /photos/
-        /Загрузки/
-        /06091705_0008.MP4
-        /33.mp4
-        /34.mp4
-        /35.mp4
-        /P_20180101_171450_LL_1.jpg
-        /V_20161029_202223.mp4
-      ])
+      expect(subject.keys).to match_array(
+        %w[
+          /
+          /01/
+          /Max/
+          /photos/
+          /Загрузки/
+          /06091705_0008.MP4
+          /33.mp4
+          /34.mp4
+          /35.mp4
+          /P_20180101_171450_LL_1.jpg
+          /V_20161029_202223.mp4
+        ]
+      )
 
       %w[/ /01/ /Max/ /photos/ /Загрузки/].each do |folder|
         expect(subject[folder][:resourcetype]).to eq(:folder)

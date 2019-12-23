@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module YandexClient
   module Passport
     # https://tech.yandex.ru/passport/doc/dg/reference/request-docpage/
@@ -6,7 +8,7 @@ module YandexClient
     #   client = YandexClient::Passport::Client.new(access_token: Token.first.access_token)
     #   client.info
     class Client < ::YandexClient::Client
-      ACTION_URL = 'https://login.yandex.ru/info'.freeze
+      ACTION_URL = 'https://login.yandex.ru/info'
       ACTIONS = %i[info].freeze
 
       # action - info

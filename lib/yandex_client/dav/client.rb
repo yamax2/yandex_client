@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'digest'
 
 module YandexClient
@@ -14,9 +16,9 @@ module YandexClient
     # cli.propfind(name: '/a', depth: 1)
     # cli.propfind(name: '/', quota: true)
     class Client < ::YandexClient::Client
-      ACTION_URL = 'https://webdav.yandex.ru'.freeze
-      PROPFIND_QUERY = '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>'.freeze
-      PROPFIND_QUOTA_QUERY = <<~XML.freeze
+      ACTION_URL = 'https://webdav.yandex.ru'
+      PROPFIND_QUERY = '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>'
+      PROPFIND_QUOTA_QUERY = <<~XML
         <D:propfind xmlns:D="DAV:">
           <D:prop>
             <D:quota-available-bytes/>

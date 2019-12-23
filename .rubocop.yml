@@ -1,0 +1,30 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'bin/**/*'
+    - '.pryrc'
+
+Layout/LineLength:
+  Max: 120
+
+Style/AsciiComments:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Style/Documentation:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

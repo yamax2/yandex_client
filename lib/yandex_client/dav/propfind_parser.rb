@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'ox'
 require 'cgi'
 
 module YandexClient
   module Dav
     class PropfindParser
-      SUCCESS_STATUS = 'HTTP/1.1 200 OK'.freeze
+      SUCCESS_STATUS = 'HTTP/1.1 200 OK'
 
       PROCESSORS = {
         getcontentlength: ->(value) { value.to_i },
@@ -15,7 +17,8 @@ module YandexClient
       end
 
       def initialize(xml)
-        @document = Ox.load(xml.force_encoding('UTF-8'), mode: :hash)
+        # FIXME: dup?
+        @document = Ox.load(xml.dup.force_encoding('UTF-8'), mode: :hash)
       end
 
       def call

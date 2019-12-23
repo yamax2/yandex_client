@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'uri'
 
 module YandexClient
@@ -14,7 +16,7 @@ module YandexClient
     #   client.create_token(code: '9388894')
     #   client.refresh_token(refresh_token: token.refresh_token)
     class Client < ::YandexClient::Client
-      AUTH_ACTION_URL = 'https://oauth.yandex.ru/token'.freeze
+      AUTH_ACTION_URL = 'https://oauth.yandex.ru/token'
 
       ACTIONS = {
         create_token: 'authorization_code',
