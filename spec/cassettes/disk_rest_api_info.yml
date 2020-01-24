@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cloud-api.yandex.net/v1/disk/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 24 Jan 2020 07:53:28 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '914'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Yandex-Cloud-Request-Id:
+      - rest-99838b6e477694a91ca4fe43dc20f04e-api02v
+      Cache-Control:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept-Language, Accept, X-Uid, X-HTTP-Method, X-Requested-With, Content-Type,
+        Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtYXhfZmlsZV9zaXplIjo1MzY4NzA5MTIwMCwidW5saW1pdGVkX2F1dG91cGxvYWRfZW5hYmxlZCI6ZmFsc2UsInRvdGFsX3NwYWNlIjoyMTQ3NDgzNjQ4MCwidHJhc2hfc2l6ZSI6MCwiaXNfcGFpZCI6ZmFsc2UsInVzZWRfc3BhY2UiOjEyODU4MzM3MDYwLCJzeXN0ZW1fZm9sZGVycyI6eyJvZG5va2xhc3NuaWtpIjoiZGlzazov0KHQvtGG0LjQsNC70YzQvdGL0LUg0YHQtdGC0Lgv0J7QtNC90L7QutC70LDRgdGB0L3QuNC60LgiLCJnb29nbGUiOiJkaXNrOi/QodC+0YbQuNCw0LvRjNC90YvQtSDRgdC10YLQuC9Hb29nbGUrIiwiaW5zdGFncmFtIjoiZGlzazov0KHQvtGG0LjQsNC70YzQvdGL0LUg0YHQtdGC0LgvSW5zdGFncmFtIiwidmtvbnRha3RlIjoiZGlzazov0KHQvtGG0LjQsNC70YzQvdGL0LUg0YHQtdGC0Lgv0JLQmtC+0L3RgtCw0LrRgtC1IiwibWFpbHJ1IjoiZGlzazov0KHQvtGG0LjQsNC70YzQvdGL0LUg0YHQtdGC0Lgv0JzQvtC5INCc0LjRgCIsImRvd25sb2FkcyI6ImRpc2s6L9CX0LDQs9GA0YPQt9C60LgvIiwiYXBwbGljYXRpb25zIjoiZGlzazov0J/RgNC40LvQvtC20LXQvdC40Y8iLCJmYWNlYm9vayI6ImRpc2s6L9Ch0L7RhtC40LDQu9GM0L3Ri9C1INGB0LXRgtC4L0ZhY2Vib29rIiwic29jaWFsIjoiZGlzazov0KHQvtGG0LjQsNC70YzQvdGL0LUg0YHQtdGC0LgvIiwic2NyZWVuc2hvdHMiOiJkaXNrOi/QodC60YDQuNC90YjQvtGC0YsvIiwicGhvdG9zdHJlYW0iOiJkaXNrOi/QpNC+0YLQvtC60LDQvNC10YDQsC8ifSwidXNlciI6eyJjb3VudHJ5IjoicnUiLCJsb2dpbiI6Im1heEBtYWlsLm15dG0udGsiLCJkaXNwbGF5X25hbWUiOiLQl9C+0LfQviDQpdC70LXQsdGD0YjQtdC6IiwidWlkIjoiMTEzMDAwMDAxOTk4MjY3MCJ9LCJyZXZpc2lvbiI6MTU3OTQ1NzE0ODI1ODM2NH0=
+    http_version: 
+  recorded_at: Fri, 24 Jan 2020 07:53:28 GMT
+recorded_with: VCR 5.0.0

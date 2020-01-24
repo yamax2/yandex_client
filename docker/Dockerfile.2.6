@@ -8,6 +8,6 @@ RUN ssh-keyscan -H github.com >> /etc/ssh/ssh_known_hosts
 ENV BUNDLE_APP_CONFIG /app/.bundle
 
 RUN echo 'gem: --no-rdoc --no-ri --no-document' > /root/.gemrc
-RUN gem install 'bundler:2.0.2' rubocop
+RUN gem install 'bundler:2.1.4' rubocop
 
 WORKDIR /app

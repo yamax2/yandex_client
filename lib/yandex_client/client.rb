@@ -54,6 +54,7 @@ module YandexClient
 
     def make_request(params)
       request_uri = request_uri(params)
+
       @body = request_body(params)
 
       request = Object.const_get("Net::HTTP::#{http_method_for_action}").new(
@@ -77,8 +78,8 @@ module YandexClient
       klass = ERRORS_BY_CODES.fetch(response.code.to_i, ApiRequestError)
 
       raise klass.new(
-        error: result.is_a?(Hash) ? result&.fetch(:error) : result,
-        error_description: result.is_a?(Hash) ? result&.fetch(:error_description) : nil,
+        error: result.is_a?(Hash) ? result.fetch(:error) : result,
+        error_description: result.is_a?(Hash) ? result[:error_description] || result[:description] : nil,
         code: response.code.to_i
       )
     end

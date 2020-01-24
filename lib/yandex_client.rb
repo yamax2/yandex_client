@@ -21,6 +21,10 @@ module YandexClient
     autoload :Client, 'yandex_client/auth/client'
   end
 
+  module Disk
+    autoload :Client, 'yandex_client/disk/client'
+  end
+
   module Passport
     autoload :Client, 'yandex_client/passport/client'
   end

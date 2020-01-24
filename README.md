@@ -80,6 +80,21 @@ cli.propfind(name: '/a', depth: 1)
 cli.propfind(name: '/', quota: true)
 ```
 
+### [Yandex Disk Rest](https://yandex.ru/dev/disk/api/concepts/about-docpage/)
+```ruby
+cli = YandexClient::Disk::Client.new(access_token: 'your_token')
+```
+
+[info](https://yandex.ru/dev/disk/api/reference/capacity-docpage/)
+```ruby
+cli.info
+```
+
+[download_url](https://yandex.ru/dev/disk/api/reference/content-docpage/)
+```ruby
+cli.download_url(path: '/test')
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -101,9 +116,6 @@ dip provision
 ```bash
 dip rspec
 ```
-
-## TODO
-* docs...
 
 ## Contributing
 
