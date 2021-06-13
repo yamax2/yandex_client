@@ -1,0 +1,8 @@
+ARG DOCKER_RUBY_VERSION
+FROM ruby:${DOCKER_RUBY_VERSION}-alpine
+
+RUN gem update --system && \
+    apk add --update --no-cache tzdata less git build-base mc && \
+    cp /usr/share/zoneinfo/Asia/Yekaterinburg /etc/localtime && echo 'Asia/Yekaterinburg' > /etc/timezone
+
+WORKDIR /app

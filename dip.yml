@@ -1,15 +1,12 @@
-version: '1'
+version: '3.3'
 
 environment:
-  DOCKER_RUBY_VERSION: 2.6
-  RUBY_IMAGE_TAG: 2.6.5
-  COMPOSE_FILE_EXT: development
+  DOCKER_RUBY_VERSION: 3.0
 
 compose:
   files:
     - docker/docker-compose.yml
-    - docker/docker-compose.${COMPOSE_FILE_EXT}.yml
-  project_name: yandex_client
+  project_name: yandex-client
 
 interaction:
   sh:
@@ -17,7 +14,7 @@ interaction:
 
   irb:
     service: app
-    command: irb
+    command: bundle exec pry
 
   bundle:
     service: app
@@ -31,16 +28,16 @@ interaction:
     service: app
     command: bundle exec rspec
 
-  clean:
-    service: app
-    command: rm -f Gemfile.lock
-
   rubocop:
     service: app
-    command: rubocop
+    command: bundle exec ./rubocop --display-style-guide --extra-details
+
+  clean:
+    service: app
+    command: rm -rf Gemfile.lock
 
 provision:
+  - ./docker/prepare_env.sh
   - docker volume create --name bundler_data
   - dip clean
   - dip bundle install
-  - dip appraisal install

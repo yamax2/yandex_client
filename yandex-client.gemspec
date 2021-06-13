@@ -5,14 +5,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'yandex_client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'yandex_client'
+  spec.name          = 'yandex-client'
   spec.version       = YandexClient::VERSION
   spec.authors       = ['Maxim Tretyakov']
   spec.email         = ['max@tretyakov-ma.ru']
 
   spec.summary       = 'Yandex Client'
   spec.description   = 'Allows to use yandex disk as webdav nodes'
-  spec.homepage      = 'https://github.com/yamax2/yandex_client'
+  spec.homepage      = 'https://github.com/yamax2/yandex-client'
   spec.license       = 'MIT'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
@@ -23,8 +23,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'oj'
-  spec.add_runtime_dependency 'ox'
+  spec.add_runtime_dependency 'http'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '>= 10'

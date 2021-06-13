@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'yandex_client'
+require 'yandex-client'
 
 Pry.start

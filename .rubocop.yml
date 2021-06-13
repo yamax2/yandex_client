@@ -1,5 +1,7 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  SuggestExtensions: false
   Exclude:
     - 'bin/**/*'
     - '.pryrc'
@@ -28,3 +30,6 @@ Layout/MultilineMethodCallIndentation:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
