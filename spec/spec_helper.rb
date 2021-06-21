@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'simplecov'
+
+SimpleCov.start do
+  minimum_coverage 95.0
+  add_filter 'spec/'
+
+  add_group 'Lib', 'lib'
+end
+
 require 'pry-byebug'
 require 'logger'
 require 'yandex_client'
-
 require 'webmock/rspec'
 require 'vcr'
 

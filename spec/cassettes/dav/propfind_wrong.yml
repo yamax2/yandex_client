@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: propfind
+    uri: https://webdav.yandex.ru/
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Depth:
+      - '2'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '72'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:14:36 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-78a4212b1ea38ee335cb307beb479dd7-xqdy7ypi7whbvur6
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:14:36 GMT
+recorded_with: VCR 6.0.0

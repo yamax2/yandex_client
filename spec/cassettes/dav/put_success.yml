@@ -1,0 +1,162 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://webdav.yandex.ru/Gemfile
+    body:
+      encoding: UTF-8
+      string: |
+        # frozen_string_literal: true
+
+        source 'https://rubygems.org'
+
+        git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+        gem 'pry-byebug'
+        gem 'rubocop', require: false
+        gem 'rubocop-rspec', require: false
+
+        gemspec
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Etag:
+      - a982d871f5067df72c308473a9f6bd42
+      Sha256:
+      - bad57f3265ecd3dc1cf368162a07d8384af0780f54e7cd29f0d10781c147c1e0
+      Expect:
+      - 100-continue
+      Content-Length:
+      - '225'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:59 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-8c05fd711d65181af425697ce49e5df8-qkdphjiwqeggdb5x
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - "/disk/Gemfile"
+      Content-Length:
+      - '10'
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: Hardlinked
+  recorded_at: Mon, 21 Jun 2021 06:11:00 GMT
+- request:
+    method: propfind
+    uri: https://webdav.yandex.ru/
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Depth:
+      - '1'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '72'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 207
+      message: Multi-Status
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:11:00 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-79a8679c8937be357ec1ffebdcfedb5d-353rsq2dxm76i5aw
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: UTF-8
+      string: <?xml version='1.0' encoding='UTF-8'?><d:multistatus xmlns:d="DAV:"><d:response><d:href>/</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><d:creationdate>2012-04-04T20:00:00Z</d:creationdate><d:displayname>disk</d:displayname><d:getlastmodified>Wed,
+        04 Apr 2012 20:00:00 GMT</d:getlastmodified><d:resourcetype><d:collection/></d:resourcetype></d:prop></d:propstat></d:response><d:response><d:href>/other_dev/</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><d:creationdate>2020-12-14T06:22:04Z</d:creationdate><d:displayname>other_dev</d:displayname><d:getlastmodified>Mon,
+        14 Dec 2020 06:22:04 GMT</d:getlastmodified><d:resourcetype><d:collection/></d:resourcetype></d:prop></d:propstat></d:response><d:response><d:href>/photos_dev/</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><d:creationdate>2020-12-14T06:21:59Z</d:creationdate><d:displayname>photos_dev</d:displayname><d:getlastmodified>Mon,
+        14 Dec 2020 06:21:59 GMT</d:getlastmodified><d:resourcetype><d:collection/></d:resourcetype></d:prop></d:propstat></d:response><d:response><d:href>/Gemfile</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><file_url>https://downloader.disk.yandex.ru/disk/0232c8c93b20ca2ccd3019b803363753678cc78836c2be0ae8ca1ff52aae8494/60d065b5/z09fMFiWn2Q0ke7F7_7a13KFsMOAtszMoOGxeoQBI9f2a56TlzteVnG-jnLK76V_IvLgzNWTtwnJV6TOyvOTxQ%3D%3D?uid=1259373998&amp;filename=Gemfile&amp;disposition=attachment&amp;hash=&amp;limit=0&amp;content_type=text%2Fplain&amp;owner_uid=1259373998&amp;fsize=225&amp;hid=ffdf2b2300a441c72cdbb4567472a3e5&amp;media_type=text&amp;tknv=v2&amp;etag=a982d871f5067df72c308473a9f6bd42</file_url><d:getetag>a982d871f5067df72c308473a9f6bd42</d:getetag><d:creationdate>2021-06-21T06:11:00Z</d:creationdate><mulca_file_url>320.yadisk:1259373998.E4247972:58434849385917297361964883113</mulca_file_url><d:displayname>Gemfile</d:displayname><d:getlastmodified>Mon,
+        21 Jun 2021 06:11:00 GMT</d:getlastmodified><d:getcontenttype>text/plain</d:getcontenttype><d:getcontentlength>225</d:getcontentlength><mulca_digest_url>320.yadisk:1259373998.E4864156:58434849365551530263343629481</mulca_digest_url><d:resourcetype/></d:prop></d:propstat></d:response></d:multistatus>
+  recorded_at: Mon, 21 Jun 2021 06:11:01 GMT
+- request:
+    method: delete
+    uri: https://webdav.yandex.ru/Gemfile
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:11:01 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-25dabb65ecaac7cc6d9a9738424c8c90-kz6drriwqxw3vpkq
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:11:01 GMT
+recorded_with: VCR 6.0.0

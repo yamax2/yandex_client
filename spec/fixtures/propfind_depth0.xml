@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:multistatus xmlns:d="DAV:">
+  <d:response>
+    <d:href>/01/dip.yml</d:href>
+    <d:propstat>
+      <d:status>HTTP/1.1 200 OK</d:status>
+      <d:prop>
+        <d:getetag>9874b28f4109f82ccccfdad1dbad083a</d:getetag>
+        <d:creationdate>2019-06-05T17:17:58Z</d:creationdate>
+        <d:displayname>dip.yml</d:displayname>
+        <d:getlastmodified>Wed, 05 Jun 2019 17:17:59 GMT</d:getlastmodified>
+        <d:getcontenttype>text/plain</d:getcontenttype>
+        <d:getcontentlength>1113</d:getcontentlength>
+        <d:resourcetype />
+      </d:prop>
+    </d:propstat>
+  </d:response>
+</d:multistatus>

@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: mkcol
+    uri: https://webdav.yandex.ru/03
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:54 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-4645683cf037a45cc3397a2a0d0fb97c-o3dl24qweodh7nmd
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:10:54 GMT
+- request:
+    method: mkcol
+    uri: https://webdav.yandex.ru/03
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 405
+      message: Method Not Allowed
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:55 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-4742b91fcf45ae02c999a0c8b0cc2c36-q56xuovpwr3xhrod
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:10:55 GMT
+recorded_with: VCR 6.0.0

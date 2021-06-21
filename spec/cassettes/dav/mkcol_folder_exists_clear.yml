@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://webdav.yandex.ru/03
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:55 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-40599831272558ffad205e0eb9a1c601-lbcwusrpx4raa4px
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:10:56 GMT
+recorded_with: VCR 6.0.0

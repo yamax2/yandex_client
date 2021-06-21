@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: mkcol
+    uri: https://webdav.yandex.ru/test
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:52 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-57cef69416afab496a2574a73bb7b87a-m7flfrdqvocsm6iv
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:10:52 GMT
+- request:
+    method: propfind
+    uri: https://webdav.yandex.ru/test
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Depth:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '72'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 207
+      message: Multi-Status
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:52 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-eabfa4d919197600fc349c9ad275fd51-4ogk65ngniwnfor5
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Content-Length:
+      - '414'
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><d:multistatus xmlns:d="DAV:"><d:response><d:href>/test/</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><d:creationdate>2021-06-21T06:10:52Z</d:creationdate><d:displayname>test</d:displayname><d:getlastmodified>Mon,
+        21 Jun 2021 06:10:52 GMT</d:getlastmodified><d:resourcetype><d:collection/></d:resourcetype></d:prop></d:propstat></d:response></d:multistatus>
+  recorded_at: Mon, 21 Jun 2021 06:10:52 GMT
+- request:
+    method: delete
+    uri: https://webdav.yandex.ru/test
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:52 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-82863feb2b66655e2ba6085fee8f7026-jymrqduduyg6levf
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:10:53 GMT
+recorded_with: VCR 6.0.0

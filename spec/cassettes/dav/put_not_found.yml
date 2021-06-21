@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://webdav.yandex.ru/path/Gemfile
+    body:
+      encoding: UTF-8
+      string: |
+        # frozen_string_literal: true
+
+        source 'https://rubygems.org'
+
+        git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+        gem 'pry-byebug'
+        gem 'rubocop', require: false
+        gem 'rubocop-rspec', require: false
+
+        gemspec
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Etag:
+      - a982d871f5067df72c308473a9f6bd42
+      Sha256:
+      - bad57f3265ecd3dc1cf368162a07d8384af0780f54e7cd29f0d10781c147c1e0
+      Expect:
+      - 100-continue
+      Content-Length:
+      - '225'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 409
+      message: Conflict
+    headers:
+      Connection:
+      - close
+      Date:
+      - Mon, 21 Jun 2021 06:10:57 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-144f99a70d48ccec3cf5476380839907-y4ptz64yp5f254bm
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Mon, 21 Jun 2021 06:10:57 GMT
+recorded_with: VCR 6.0.0

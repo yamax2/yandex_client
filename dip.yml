@@ -6,7 +6,7 @@ environment:
 compose:
   files:
     - docker/docker-compose.yml
-  project_name: yandex-client
+  project_name: yandex_client
 
 interaction:
   sh:
