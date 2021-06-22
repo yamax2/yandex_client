@@ -8,6 +8,7 @@ require 'yandex_client/configurable'
 require 'yandex_client/dav'
 require 'yandex_client/disk'
 require 'yandex_client/auth'
+require 'yandex_client/passport'
 
 module YandexClient
   Config = Struct.new \

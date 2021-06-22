@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://login.yandex.ru/info
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - Bearer zozo
+      Connection:
+      - close
+      Host:
+      - login.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 22 Jun 2021 10:28:11 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '0'
+      Connection:
+      - close
+      Www-Authenticate:
+      - OAuth realm='login' error='expired_token'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Language, Content-Type, X-Requested-With
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 22 Jun 2021 10:28:11 GMT
+recorded_with: VCR 6.0.0

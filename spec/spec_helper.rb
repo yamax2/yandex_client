@@ -43,5 +43,9 @@ VCR.configure do |c|
     i.response.body.to_s.match(/"refresh_token":\s+"([0-9_\-:A-z]+)"/).to_a.last
   end
 
+  c.filter_sensitive_data('<VERY_SECRET>') do |i|
+    i.response.body.to_s.match(/"psuid":\s+"([0-9._\-:A-z]+)"/).to_a.last
+  end
+
   c.configure_rspec_metadata!
 end
