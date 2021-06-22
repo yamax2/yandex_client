@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://login.yandex.ru/info
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <TOKEN>
+      Connection:
+      - close
+      Host:
+      - login.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 22 Jun 2021 10:27:27 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '498'
+      Connection:
+      - close
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Language, Content-Type, X-Requested-With
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id": "1259373998", "login": "nodedev.photostorage", "client_id":
+        "ede5c51271164a9e833ab9119b4d3c26", "display_name": "nodedev.photostorage",
+        "real_name": "node_dev photostorage", "first_name": "node_dev", "last_name":
+        "photostorage", "sex": null, "default_email": "nodedev.photostorage@yandex.ru",
+        "emails": ["nodedev.photostorage@yandex.ru"], "default_avatar_id": "45848/ebvascAwtGrXcCA0kNhQrS4OJ24-1",
+        "is_avatar_empty": false, "psuid": "<VERY_SECRET>"}'
+  recorded_at: Tue, 22 Jun 2021 10:27:27 GMT
+recorded_with: VCR 6.0.0

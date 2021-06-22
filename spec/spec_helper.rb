@@ -28,7 +28,7 @@ end
 API_APPLICATION_KEY = 'key'
 API_APPLICATION_SECRET = 'secret'
 
-API_ACCESS_TOKEN = 'access'
+API_ACCESS_TOKEN = 'AgAAAABLEIWuAAbDUt0uAo8a006glPvrvfEh7W8'
 API_REFRESH_TOKEN = 'refresh'
 
 VCR.configure do |c|
@@ -41,6 +41,10 @@ VCR.configure do |c|
   c.filter_sensitive_data('<API_SECRET_KEY>') { API_APPLICATION_SECRET }
   c.filter_sensitive_data('<RESULT_REFRESH_TOKEN>') do |i|
     i.response.body.to_s.match(/"refresh_token":\s+"([0-9_\-:A-z]+)"/).to_a.last
+  end
+
+  c.filter_sensitive_data('<VERY_SECRET>') do |i|
+    i.response.body.to_s.match(/"psuid":\s+"([0-9._\-:A-z]+)"/).to_a.last
   end
 
   c.configure_rspec_metadata!
