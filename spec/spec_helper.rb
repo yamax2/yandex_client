@@ -37,8 +37,11 @@ VCR.configure do |c|
   c.hook_into :webmock
 
   c.filter_sensitive_data('<TOKEN>') { API_ACCESS_TOKEN }
-  c.filter_sensitive_data('<REFRESH_TOKEN>') { API_REFRESH_TOKEN }
+  c.filter_sensitive_data('<REFRESH_TOKEN>') { CGI.escape(API_REFRESH_TOKEN) }
   c.filter_sensitive_data('<API_SECRET_KEY>') { API_APPLICATION_SECRET }
+  c.filter_sensitive_data('<RESULT_REFRESH_TOKEN>') do |i|
+    i.response.body.to_s.match(/"refresh_token":\s+"([0-9_\-:A-z]+)"/).to_a.last
+  end
 
   c.configure_rspec_metadata!
 end

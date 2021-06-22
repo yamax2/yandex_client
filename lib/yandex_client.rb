@@ -7,6 +7,7 @@ require 'yandex_client/configurable'
 
 require 'yandex_client/dav'
 require 'yandex_client/disk'
+require 'yandex_client/auth'
 
 module YandexClient
   Config = Struct.new \
@@ -40,6 +41,10 @@ module YandexClient
 
     def configure
       yield config
+    end
+
+    def auth
+      @auth ||= Auth.new
     end
   end
 end

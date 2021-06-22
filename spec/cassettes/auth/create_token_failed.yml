@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://oauth.yandex.ru/token
+    body:
+      encoding: UTF-8
+      string: grant_type=authorization_code&client_id=ede5c51271164a9e833ab9119b4d3c26&client_secret=<API_SECRET_KEY>&code=4726731
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Connection:
+      - close
+      Host:
+      - oauth.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 22 Jun 2021 09:35:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '67'
+      Connection:
+      - close
+      Cache-Control:
+      - no-store
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Language, Content-Type, X-Requested-With
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error": "invalid_grant", "error_description": "Code has expired"}'
+  recorded_at: Tue, 22 Jun 2021 09:35:09 GMT
+recorded_with: VCR 6.0.0
