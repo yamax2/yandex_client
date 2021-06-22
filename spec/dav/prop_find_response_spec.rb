@@ -46,7 +46,7 @@ RSpec.describe YandexClient::Dav::PropFindResponse do
         item = response.group_by(&:name).fetch(file).first
 
         expect(item).to be_file
-        expect(item).to have_attributes(etag: String, size: Integer)
+        expect(item).to have_attributes(etag: String, size: Integer, content_type: String)
       end
     end
   end

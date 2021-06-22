@@ -11,7 +11,7 @@ module YandexClient
       SUCCESS_STATUS = 'HTTP/1.1 200 OK'
 
       class Item
-        attr_reader :name, :created_at, :last_modified
+        attr_reader :name, :created_at, :last_modified, :content_type
 
         def initialize(name, node)
           @name = name
@@ -38,9 +38,11 @@ module YandexClient
 
           @etag = node.fetch(:'d:getetag')
           @size = node.fetch(:'d:getcontentlength').to_i
+          @content_type = node.fetch(:'d:getcontenttype')
 
           define_singleton_method(:etag) { @etag }
           define_singleton_method(:size) { @size }
+          define_singleton_method(:content_type) { @content_type }
         end
       end
 
