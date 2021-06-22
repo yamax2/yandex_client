@@ -1,0 +1,155 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://webdav.yandex.ru/Gemfile
+    body:
+      encoding: UTF-8
+      string: |
+        # frozen_string_literal: true
+
+        source 'https://rubygems.org'
+
+        git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+        gem 'pry-byebug'
+        gem 'rubocop', require: false
+        gem 'rubocop-rspec', require: false
+
+        gemspec
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Etag:
+      - a982d871f5067df72c308473a9f6bd42
+      Sha256:
+      - bad57f3265ecd3dc1cf368162a07d8384af0780f54e7cd29f0d10781c147c1e0
+      Expect:
+      - 100-continue
+      Content-Length:
+      - '225'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - close
+      Date:
+      - Tue, 22 Jun 2021 08:52:31 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-f52fb4ecb1f0d6330f4ff35c30f8c930-qkdphjiwqeggdb5x
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - "/disk/Gemfile"
+      Content-Length:
+      - '10'
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: Hardlinked
+  recorded_at: Tue, 22 Jun 2021 08:52:32 GMT
+- request:
+    method: get
+    uri: https://cloud-api.yandex.net/v1/disk/resources/download?path=Gemfile
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - cloud-api.yandex.net
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 22 Jun 2021 08:52:32 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '474'
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Yandex-Cloud-Request-Id:
+      - rest-005f24e85fb063abc5c38866008c1657-api36f
+      Cache-Control:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept-Language, Accept, X-Uid, X-HTTP-Method, X-Requested-With, Content-Type,
+        Authorization
+    body:
+      encoding: UTF-8
+      string: '{"href":"https://downloader.disk.yandex.ru/disk/ca5d68a58ef2ab2fb3c18e1b4f08de13479a944939c85c5d2bf11619cfb5ebef/60d1dd10/z09fMFiWn2Q0ke7F7_7a13KFsMOAtszMoOGxeoQBI9f2a56TlzteVnG-jnLK76V_IvLgzNWTtwnJV6TOyvOTxQ%3D%3D?uid=1259373998&filename=Gemfile&disposition=attachment&hash=&limit=0&content_type=text%2Fplain&owner_uid=1259373998&fsize=225&hid=ffdf2b2300a441c72cdbb4567472a3e5&media_type=text&tknv=v2&etag=a982d871f5067df72c308473a9f6bd42","method":"GET","templated":false}'
+  recorded_at: Tue, 22 Jun 2021 08:52:32 GMT
+- request:
+    method: delete
+    uri: https://webdav.yandex.ru/Gemfile
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Connection:
+      - close
+      Date:
+      - Tue, 22 Jun 2021 08:52:32 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-79a0bdce75aa16c3c43388d6792c8926-wyznvo2kaxxmwi7i
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Tue, 22 Jun 2021 08:52:33 GMT
+recorded_with: VCR 6.0.0

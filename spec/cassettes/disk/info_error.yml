@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cloud-api.yandex.net/v1/disk/
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth wrong
+      Connection:
+      - close
+      Host:
+      - cloud-api.yandex.net
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 21 Jun 2021 13:12:11 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '99'
+      Connection:
+      - close
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Yandex-Cloud-Request-Id:
+      - rest-fc65f7eadd5e27f72ea0715e9cca7287-api01f
+      Cache-Control:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept-Language, Accept, X-Uid, X-HTTP-Method, X-Requested-With, Content-Type,
+        Authorization
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlIjoi0J3QtSDQsNCy0YLQvtGA0LjQt9C+0LLQsNC9LiIsImRlc2NyaXB0aW9uIjoiVW5hdXRob3JpemVkIiwiZXJyb3IiOiJVbmF1dGhvcml6ZWRFcnJvciJ9
+  recorded_at: Mon, 21 Jun 2021 13:12:11 GMT
+recorded_with: VCR 6.0.0

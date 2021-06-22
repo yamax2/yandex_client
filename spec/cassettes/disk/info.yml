@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cloud-api.yandex.net/v1/disk/
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Connection:
+      - close
+      Host:
+      - cloud-api.yandex.net
+      User-Agent:
+      - http.rb/5.0.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 21 Jun 2021 13:12:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '904'
+      Connection:
+      - close
+      Vary:
+      - Accept-Encoding
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Yandex-Cloud-Request-Id:
+      - rest-532d53f07945b0ee7eb553cec5a13ddf-api22h
+      Cache-Control:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept-Language, Accept, X-Uid, X-HTTP-Method, X-Requested-With, Content-Type,
+        Authorization
+    body:
+      encoding: UTF-8
+      string: '{"max_file_size":53687091200,"unlimited_autoupload_enabled":false,"total_space":10737418240,"trash_size":0,"is_paid":false,"used_space":29998437,"system_folders":{"odnoklassniki":"disk:/Социальные
+        сети/Одноклассники","google":"disk:/Социальные сети/Google+","instagram":"disk:/Социальные
+        сети/Instagram","vkontakte":"disk:/Социальные сети/ВКонтакте","mailru":"disk:/Социальные
+        сети/Мой Мир","downloads":"disk:/Загрузки/","applications":"disk:/Приложения","facebook":"disk:/Социальные
+        сети/Facebook","social":"disk:/Социальные сети/","screenshots":"disk:/Скриншоты/","photostream":"disk:/Фотокамера/"},"user":{"country":"ru","login":"nodedev.photostorage","display_name":"nodedev.photostorage","uid":"1259373998"},"revision":1624259108814000}'
+  recorded_at: Mon, 21 Jun 2021 13:12:11 GMT
+recorded_with: VCR 6.0.0

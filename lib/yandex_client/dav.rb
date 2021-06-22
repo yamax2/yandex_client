@@ -5,10 +5,22 @@ require 'http'
 require 'yandex_client/dav/prop_find_response'
 
 module YandexClient
+  # https://tech.yandex.ru/disk/doc/dg/reference/put-docpage/
+  #
+  # Chainable client:
+  #
+  # YandexClient::Dav[access_token]
+  #   .put('1.txt', '/a/b/c/1.txt')
+  #   .put(File.open('1.txt', 'rb'), '/path/to/1.txt')
+  #   .put(Tempfile.new.tap { |t| t.write('say ni'); t.rewind }, '/path/to/tmp.txt')
+  #   .delete('/a/b/c/1.txt')
+  #   .mkcol('/a/b/c')
+  #   .propfind('/a/dip.yml', depth: 0)
+  #   .propfind('/a', depth: 1)
+  #   .propfind.to_a
   class Dav
-    extend Forwardable
-    include YandexClient::ErrorHandler
-    def_delegator :YandexClient, :config
+    include Configurable
+    include ErrorHandler
 
     ACTION_URL = 'https://webdav.yandex.ru'
     PROPFIND_QUERY = '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>'
@@ -37,18 +49,18 @@ module YandexClient
         'Content-Length' => (size || File.size(io.path)).to_s
       )
 
-      process_response with_timeouts.put(url_for(dest), body: io, headers: headers)
+      process_response with_config.put(url_for(dest), body: io, headers: headers)
     end
 
     def delete(dest)
-      process_response with_timeouts.delete(
+      process_response with_config.delete(
         url_for(dest),
         headers: auth_headers
       )
     end
 
     def mkcol(dest)
-      process_response with_timeouts.request(
+      process_response with_config.request(
         :mkcol,
         url_for(dest),
         headers: auth_headers
@@ -62,7 +74,7 @@ module YandexClient
         'Content-Length' => PROPFIND_QUERY.length
       )
 
-      response = with_timeouts.request(:propfind, url_for(dest), headers: headers, body: PROPFIND_QUERY)
+      response = with_config.request(:propfind, url_for(dest), headers: headers, body: PROPFIND_QUERY)
       process_response(response)
 
       PropFindResponse.new(response.body.to_s)
@@ -87,14 +99,6 @@ module YandexClient
       return self if response.status.success?
 
       error_for_response(response)
-    end
-
-    def with_timeouts
-      HTTP.timeout(
-        connect: config.connect_timeout,
-        read: config.read_timeout,
-        write: config.write_timeout
-      )
     end
   end
 end
