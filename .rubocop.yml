@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - '.pryrc'
+    - 'vendor/**/*'
 
 Layout/LineLength:
   Max: 120
