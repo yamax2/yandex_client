@@ -59,6 +59,18 @@ RSpec.describe YandexClient::Disk do
     end
   end
 
+  describe '#upload_url' do
+    subject(:url) do
+      VCR.use_cassette('disk/rest_api_upload') do
+        described_class[API_ACCESS_TOKEN].upload_url('Gemfile', overwrite: true)
+      end
+    end
+
+    it do
+      expect(url).to match(%r{^https://.+disk.yandex})
+    end
+  end
+
   context 'when invalid token' do
     subject(:info) { VCR.use_cassette('disk/info_error') { described_class['wrong'].info } }
 

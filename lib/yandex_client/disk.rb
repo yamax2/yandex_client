@@ -8,6 +8,7 @@ module YandexClient
   #
   # YandexClient::Disk[access_token].info
   # YandexClient::Disk[access_token].download_url('path/to/file')
+  # YandexClient::Disk[access_token].download_url('path/to/file', overwrite: false)
   class Disk
     include Configurable
     include ErrorHandler
@@ -38,6 +39,17 @@ module YandexClient
       url = URI.parse(ACTION_URL).tap do |uri|
         uri.path = '/v1/disk/resources/download'
         uri.query = URI.encode_www_form(path: path)
+      end
+
+      process_response(
+        with_config.get(url, headers: auth_headers)
+      ).fetch(:href)
+    end
+
+    def upload_url(path, overwrite: false)
+      url = URI.parse(ACTION_URL).tap do |uri|
+        uri.path = '/v1/disk/resources/upload'
+        uri.query = URI.encode_www_form(path: ::CGI.escape(path), overwrite: overwrite)
       end
 
       process_response(
