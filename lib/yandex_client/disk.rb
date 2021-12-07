@@ -3,8 +3,9 @@
 require 'json'
 
 module YandexClient
-  # https://yandex.ru/dev/disk/api/reference/capacity-docpage/
-  # https://yandex.ru/dev/disk/api/reference/content-docpage/
+  # https://yandex.ru/dev/disk/api/reference/capacity.html
+  # https://yandex.ru/dev/disk/api/reference/content.html
+  # https://yandex.ru/dev/disk/api/reference/move.html
   #
   # YandexClient::Disk[access_token].info
   # YandexClient::Disk[access_token].download_url('path/to/file')
@@ -49,11 +50,22 @@ module YandexClient
     def upload_url(path, overwrite: false)
       url = URI.parse(ACTION_URL).tap do |uri|
         uri.path = '/v1/disk/resources/upload'
-        uri.query = URI.encode_www_form(path: ::CGI.escape(path), overwrite: overwrite)
+        uri.query = URI.encode_www_form(path: path, overwrite: overwrite)
       end
 
       process_response(
         with_config.get(url, headers: auth_headers)
+      ).fetch(:href)
+    end
+
+    def move(from, to, overwrite: false)
+      url = URI.parse(ACTION_URL).tap do |uri|
+        uri.path = '/v1/disk/resources/move'
+        uri.query = URI.encode_www_form(from: from, path: to, overwrite: overwrite)
+      end
+
+      process_response(
+        with_config.post(url, headers: auth_headers)
       ).fetch(:href)
     end
 

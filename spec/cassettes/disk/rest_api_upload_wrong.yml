@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cloud-api.yandex.net/v1/disk/resources/upload?overwrite=true&path=/test/Gemfile
+    uri: https://cloud-api.yandex.net/v1/disk/resources/upload?overwrite=true&path=/test1/Gemfile
     body:
       encoding: UTF-8
       string: ''
@@ -17,27 +17,23 @@ http_interactions:
       - http.rb/5.0.4
   response:
     status:
-      code: 200
-      message: OK
+      code: 409
+      message: Conflict
     headers:
       Server:
       - nginx
       Date:
-      - Tue, 07 Dec 2021 21:02:22 GMT
+      - Tue, 07 Dec 2021 21:05:09 GMT
       Content-Type:
-      - application/json; charset=utf-8
+      - application/json
       Content-Length:
-      - '243'
+      - '191'
       Connection:
       - close
-      Vary:
-      - Accept-Encoding
-      Access-Control-Allow-Methods:
-      - PUT, POST, GET, OPTIONS
       Access-Control-Allow-Credentials:
       - 'true'
       Yandex-Cloud-Request-Id:
-      - rest-a7dada1c8adb1dde97239143656b40ca-api07e
+      - rest-7a142689ec2448dc86be968be2a63edc-api13v
       Cache-Control:
       - no-cache
       Access-Control-Allow-Origin:
@@ -46,7 +42,8 @@ http_interactions:
       - Accept-Language, Accept, X-Uid, X-HTTP-Method, X-Requested-With, Content-Type,
         Authorization
     body:
-      encoding: UTF-8
-      string: '{"operation_id":"ded644a04108cc9bf7c9d0d2850f158aa7f0b88972376461f8b098be19d9b0a1","href":"https://uploader11g.disk.yandex.net:443/upload-target/zozo","method":"PUT","templated":false}'
-  recorded_at: Tue, 07 Dec 2021 21:02:22 GMT
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXNzYWdlIjoi0KPQutCw0LfQsNC90L3QvtCz0L4g0L/Rg9GC0LggXCIvdGVzdDEvR2VtZmlsZVwiINC90LUg0YHRg9GJ0LXRgdGC0LLRg9C10YIuIiwiZGVzY3JpcHRpb24iOiJTcGVjaWZpZWQgcGF0aCBcIi90ZXN0MS9HZW1maWxlXCIgZG9lc24ndCBleGlzdHMuIiwiZXJyb3IiOiJEaXNrUGF0aERvZXNudEV4aXN0c0Vycm9yIn0=
+  recorded_at: Tue, 07 Dec 2021 21:05:09 GMT
 recorded_with: VCR 6.0.0

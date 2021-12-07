@@ -42,7 +42,8 @@ https://yandex.ru/dev/disk/api/reference/content-docpage/
 ```ruby
 YandexClient::Disk['access_token'].info
 YandexClient::Disk['access_token'].download_url('path/to/file')
-YandexClient::Disk['access_token'].upload_url('path/to/file')
+YandexClient::Disk['access_token'].upload_url('path/to/file', overwrite: false)
+YandexClient::Disk['access_token'].move('path/to/file', 'new_path/to/new_file', overwrite: false)
 ```
 
 ## Auth

@@ -60,14 +60,50 @@ RSpec.describe YandexClient::Disk do
   end
 
   describe '#upload_url' do
-    subject(:url) do
-      VCR.use_cassette('disk/rest_api_upload') do
-        described_class[API_ACCESS_TOKEN].upload_url('Gemfile', overwrite: true)
+    context 'when success' do
+      subject(:url) do
+        VCR.use_cassette('disk/rest_api_upload') do
+          described_class[API_ACCESS_TOKEN].upload_url('/test/Gemfile', overwrite: true)
+        end
+      end
+
+      it do
+        expect(url).to match(%r{^https://.+disk.yandex})
       end
     end
 
-    it do
-      expect(url).to match(%r{^https://.+disk.yandex})
+    context 'when error' do
+      subject(:url) do
+        VCR.use_cassette('disk/rest_api_upload_wrong') do
+          described_class[API_ACCESS_TOKEN].upload_url('/test1/Gemfile', overwrite: true)
+        end
+      end
+
+      it { expect { url }.to raise_error(YandexClient::ApiRequestError) }
+    end
+  end
+
+  describe '#move' do
+    context 'when success' do
+      subject(:url) do
+        VCR.use_cassette('disk/rest_api_move') do
+          described_class[API_ACCESS_TOKEN].move('/test.jpg', '/test/testing.jpg')
+        end
+      end
+
+      it { is_expected.to include('yandex.net') }
+    end
+
+    context 'when error' do
+      subject(:url) do
+        VCR.use_cassette('disk/rest_api_move_error') do
+          described_class[API_ACCESS_TOKEN].move('/test.jpg', '/test1/test.jpg')
+        end
+      end
+
+      it do
+        expect { url }.to raise_error(YandexClient::ApiRequestError)
+      end
     end
   end
 

@@ -1,8 +1,8 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://cloud-api.yandex.net/v1/disk/resources/upload?overwrite=true&path=/test/Gemfile
+    method: post
+    uri: https://cloud-api.yandex.net/v1/disk/resources/move?from=/test.jpg&overwrite=false&path=/test/testing.jpg
     body:
       encoding: UTF-8
       string: ''
@@ -17,27 +17,25 @@ http_interactions:
       - http.rb/5.0.4
   response:
     status:
-      code: 200
-      message: OK
+      code: 201
+      message: Created
     headers:
       Server:
       - nginx
       Date:
-      - Tue, 07 Dec 2021 21:02:22 GMT
+      - Tue, 07 Dec 2021 21:06:25 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '243'
+      - '124'
       Connection:
       - close
-      Vary:
-      - Accept-Encoding
       Access-Control-Allow-Methods:
-      - PUT, POST, GET, OPTIONS
+      - POST, OPTIONS
       Access-Control-Allow-Credentials:
       - 'true'
       Yandex-Cloud-Request-Id:
-      - rest-a7dada1c8adb1dde97239143656b40ca-api07e
+      - rest-2f2e3b708d1c2a99fb5a7b6414d31877-api18h
       Cache-Control:
       - no-cache
       Access-Control-Allow-Origin:
@@ -47,6 +45,6 @@ http_interactions:
         Authorization
     body:
       encoding: UTF-8
-      string: '{"operation_id":"ded644a04108cc9bf7c9d0d2850f158aa7f0b88972376461f8b098be19d9b0a1","href":"https://uploader11g.disk.yandex.net:443/upload-target/zozo","method":"PUT","templated":false}'
-  recorded_at: Tue, 07 Dec 2021 21:02:22 GMT
+      string: '{"href":"https://cloud-api.yandex.net/v1/disk/resources?path=disk%3A%2Ftest%2Ftesting.jpg","method":"GET","templated":false}'
+  recorded_at: Tue, 07 Dec 2021 21:06:25 GMT
 recorded_with: VCR 6.0.0
