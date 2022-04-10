@@ -1,7 +1,7 @@
 version: '3.3'
 
 environment:
-  DOCKER_RUBY_VERSION: 3.0
+  DOCKER_RUBY_VERSION: 3.1
 
 compose:
   files:
