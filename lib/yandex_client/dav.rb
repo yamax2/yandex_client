@@ -67,6 +67,20 @@ module YandexClient
       )
     end
 
+    # https://yandex.ru/dev/disk/doc/dg/reference/move.html
+    def move(source, dest, overwrite: false)
+      headers = auth_headers.merge!(
+        'Destination' => absolute_path(dest),
+        'Overwrite' => overwrite ? 'T' : 'F'
+      )
+
+      process_response with_config.request(
+        :move,
+        url_for(source),
+        headers: headers
+      )
+    end
+
     def propfind(dest = '', depth = 1)
       headers = auth_headers.merge!(
         Depth: depth.to_s,
@@ -88,10 +102,7 @@ module YandexClient
 
     def url_for(dest)
       URI.parse(ACTION_URL).tap do |uri|
-        path = dest
-        path = "/#{path}" unless path.match?(%r{^/})
-
-        uri.path = path
+        uri.path = absolute_path(dest)
       end
     end
 
@@ -99,6 +110,12 @@ module YandexClient
       return self if response.status.success?
 
       error_for_response(response)
+    end
+
+    def absolute_path(path)
+      return path if path.match?(%r{^/})
+
+      "/#{path}"
     end
   end
 end

@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: move
+    uri: https://webdav.yandex.ru/15803903.pdf
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Destination:
+      - "/test/test1.pdf"
+      Overwrite:
+      - F
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - close
+      Date:
+      - Sun, 11 Sep 2022 09:48:12 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-028e0af0073eb917f51c02e701353dec-ttkaxz5ehpru3bz4
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Sun, 11 Sep 2022 09:48:13 GMT
+- request:
+    method: propfind
+    uri: https://webdav.yandex.ru/test/
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"></propfind>
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Depth:
+      - '1'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Content-Length:
+      - '72'
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 207
+      message: Multi-Status
+    headers:
+      Connection:
+      - close
+      Date:
+      - Sun, 11 Sep 2022 09:48:13 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-46d2af2cc49505cd3a3676a729bb4df0-lrfkg2nsohtkyuin
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: UTF-8
+      string: <?xml version='1.0' encoding='UTF-8'?><d:multistatus xmlns:d="DAV:"><d:response><d:href>/test/</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><d:creationdate>2022-09-11T09:36:48Z</d:creationdate><d:displayname>test</d:displayname><d:getlastmodified>Sun,
+        11 Sep 2022 09:36:48 GMT</d:getlastmodified><d:resourcetype><d:collection/></d:resourcetype></d:prop></d:propstat></d:response><d:response><d:href>/test/test1.pdf</d:href><d:propstat><d:status>HTTP/1.1
+        200 OK</d:status><d:prop><file_url>https://downloader.disk.yandex.ru/disk/9f3cb75044e009f978d2c77c2fc6c94766991e3f2ef252d98659ab7dd387f9db/631de71d/z09fMFiWn2Q0ke7F7_7a16c3nLuaAfbEI_eDadsbM0DR3WmNyLYB79qZj972EPMEaazBE6JW02tHi1oM3j72bA%3D%3D?uid=1259373998&amp;filename=test1.pdf&amp;disposition=attachment&amp;hash=&amp;limit=0&amp;content_type=application%2Fpdf&amp;owner_uid=1259373998&amp;fsize=334647&amp;hid=d0ad64b5c89950d2fa4fdc0ea116d88e&amp;media_type=document&amp;tknv=v2&amp;etag=ca0929ddadeb976c4876bc7176a55553</file_url><d:getetag>ca0929ddadeb976c4876bc7176a55553</d:getetag><d:creationdate>2022-09-11T09:47:50Z</d:creationdate><mulca_file_url>320.yadisk:1259373998.E7378271:58434849368296636332107052151</mulca_file_url><d:displayname>test1.pdf</d:displayname><d:getlastmodified>Sun,
+        11 Sep 2022 09:48:13 GMT</d:getlastmodified><d:getcontenttype>application/pdf</d:getcontenttype><d:getcontentlength>334647</d:getcontentlength><mulca_digest_url>320.yadisk:1259373998.E7387785:5843484934136567533144093815</mulca_digest_url><d:resourcetype/></d:prop></d:propstat></d:response></d:multistatus>
+  recorded_at: Sun, 11 Sep 2022 09:48:13 GMT
+recorded_with: VCR 6.1.0

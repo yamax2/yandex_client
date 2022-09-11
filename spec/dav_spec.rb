@@ -319,4 +319,47 @@ RSpec.describe YandexClient::Dav do
       end
     end
   end
+
+  describe '#move' do
+    context 'when move without overwrite' do
+      subject(:moved) do
+        VCR.use_cassette('dav/move_success_no_overwrite') do
+          described_class[API_ACCESS_TOKEN].
+            move('15803903.pdf', 'test/test1.pdf').
+            propfind('test/').
+            map(&:name)
+        end
+      end
+
+      it do
+        expect { moved }.not_to raise_error
+
+        expect(moved).to include('/test/test1.pdf')
+      end
+    end
+
+    context 'when move with overwrite' do
+      subject(:move!) do
+        VCR.use_cassette('dav/move_success_overwrite') do
+          described_class[API_ACCESS_TOKEN].move('15803903.pdf', 'test/test1.pdf', overwrite: true)
+        end
+      end
+
+      it do
+        expect { move! }.not_to raise_error
+      end
+    end
+
+    context 'when overwrite is disabled and file already exists' do
+      subject(:move!) do
+        VCR.use_cassette('dav/move_overwrite_failed') do
+          described_class[API_ACCESS_TOKEN].move('15803903.pdf', 'test/test1.pdf')
+        end
+      end
+
+      it do
+        expect { move! }.to raise_error(YandexClient::ApiRequestError, /412/)
+      end
+    end
+  end
 end

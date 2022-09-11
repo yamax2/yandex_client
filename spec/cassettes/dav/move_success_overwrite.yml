@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: move
+    uri: https://webdav.yandex.ru/15803903.pdf
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Authorization:
+      - OAuth <TOKEN>
+      Destination:
+      - "/test/test1.pdf"
+      Overwrite:
+      - T
+      Connection:
+      - close
+      Host:
+      - webdav.yandex.ru
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - close
+      Date:
+      - Sun, 11 Sep 2022 09:52:51 GMT
+      Yandex-Cloud-Request-Id:
+      - dav-e54c14b7652e673007519a05d98f0917-o3dl24qweodh7nmd
+      Yandex-Uid:
+      - '1259373998'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - Jetty(9.4.11.v20180605)
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+  recorded_at: Sun, 11 Sep 2022 09:52:52 GMT
+recorded_with: VCR 6.1.0
