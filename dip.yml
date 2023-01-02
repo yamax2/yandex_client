@@ -1,7 +1,7 @@
 version: '3.3'
 
 environment:
-  DOCKER_RUBY_VERSION: 3.1
+  DOCKER_RUBY_VERSION: 3.2
 
 compose:
   files:
@@ -37,7 +37,6 @@ interaction:
     command: rm -rf Gemfile.lock
 
 provision:
-  - ./docker/prepare_env.sh
   - docker volume create --name bundler_data
   - dip clean
   - dip bundle install

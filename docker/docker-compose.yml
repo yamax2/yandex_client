@@ -7,8 +7,6 @@ services:
       dockerfile: ./docker/Dockerfile.dip
       args:
         DOCKER_RUBY_VERSION: $DOCKER_RUBY_VERSION
-      labels:
-        com.yandex-client.ruby.version: $DOCKER_RUBY_VERSION
     environment:
       - BUNDLE_PATH=/bundle/${DOCKER_RUBY_VERSION}
     volumes:
